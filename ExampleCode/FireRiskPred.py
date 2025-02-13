@@ -1,10 +1,12 @@
 import datetime
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
-# Do not push your client ID or SECRET to github.
-os.environ['MET_CLIENT_ID'] = 'YOUR MET CLIENT ID'
-os.environ['MET_CLIENT_SECRET'] = 'YOUR MET CLIENT SECRET'
 
+# This implementation avoids accedental uploads of keys, but require a .env file 
+os.getenv('MET_CLIENT_ID')
+os.getenv('MET_CLIENT_SECRET')
 
 from frcm.frcapi import METFireRiskAPI
 from frcm.datamodel.model import Location

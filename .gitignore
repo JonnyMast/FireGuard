@@ -1,0 +1,4 @@
+# Ignore .env files
+# We do not want to upload sensitive information
+.env
+.env.*

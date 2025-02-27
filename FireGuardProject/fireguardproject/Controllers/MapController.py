@@ -6,6 +6,27 @@ import matplotlib.colors as mcolors
 import numpy as np
 import logging
 from decouple import Config, RepositoryEnv
+import datetime
+import os
+from dotenv import load_dotenv
+from frcm.frcapi import METFireRiskAPI
+from frcm.datamodel.model import Location, FireRiskPrediction
+
+# Import the module
+from fireguardproject.Models import FireRiskPredictionHelper
+
+
+print(os.getcwd())  # Shows where Python is currently running from
+
+load_dotenv()
+# This implementation avoids accedental uploads of keys, but require a .env file 
+# Make sure to add .env to .gitignore before pushing
+os.getenv('MET_CLIENT_ID')
+os.getenv('MET_CLIENT_SECRET')
+
+
+
+
 
 # Konfigurer logging for både terminal og fil
 logging.basicConfig(
@@ -17,13 +38,7 @@ logging.basicConfig(
     ]
 )
 
-# Legg til 'frcm'-mappen i sys.path slik at Python finner modulen
-frcm_path = os.path.abspath("/Users/jonnyhugoy/Documents/frcm")
-if frcm_path not in sys.path:
-    sys.path.append(frcm_path)
 
-from frcm.frcapi import METFireRiskAPI
-from frcm.datamodel.model import Location
 
 # Hent miljøvariabler fra .env
 env_path = os.path.join(os.path.dirname(__file__), ".env")
@@ -48,21 +63,23 @@ kommunesentre = {
     "Førde": Location(latitude=61.45103, longitude=5.86358),
     "Sogndal": Location(latitude=61.22934, longitude=7.10377),
     "Florø": Location(latitude=61.59939, longitude=5.03249),
-    "Nordfjordeid": Location(latitude=61.90579, longitude=5.99109)
+    "Nordfjordeid": Location(latitude=61.90579, longitude=5.99109),
+    "Tønsberg": Location(latitude=59.2671, longitude=10.4076),
+    "Oslo": Location(latitude=59.9139, longitude=10.7522),
+    "Trondheim": Location(latitude=63.4305, longitude=10.3951),
 }
 
 # Definer tidsperiode for observasjoner
-obs_delta = datetime.timedelta(days=2)
+obs_delta = datetime.timedelta(days=20)
 
 # Opprett kart sentrert i Hordaland og Sogn og Fjordane
 map_center = (61.0, 6.0)
 fire_map = folium.Map(location=map_center, zoom_start=7)
 
 # Fargekart fra grønn (lav risiko) til rød (høy risiko)
-cmap = mcolors.LinearSegmentedColormap.from_list("fire_risk", ["green", "yellow", "red"])
+cmap = mcolors.LinearSegmentedColormap.from_list("fire_risk", ["red", "yellow", "green"])
 
-# Generer simulerte verdier hvis API-feil oppstår
-np.random.seed(42)
+
 
 # Dictionary for å lagre alle brannrisikoverdier
 fire_risk_results = {}
@@ -70,32 +87,29 @@ fire_risk_results = {}
 # Beregn og visualiser brannrisiko for hver kommune
 for kommune, location in kommunesentre.items():
     logging.debug(f"Fetching fire risk for {kommune}...")
-    fire_risk = frc.compute_now(location, obs_delta)
-    
+    fire_risk: FireRiskPrediction = frc.compute_now(location, obs_delta)
+
     # Debugging for å sjekke hva API-et returnerer
     logging.debug(f"Raw API response for {kommune}: {fire_risk}")
-    
-    # Hvis API-data er ugyldige, bruk simulert verdi
-    if fire_risk is None or not isinstance(fire_risk, (float, int)) or not (0 <= fire_risk <= 1):
-        fire_risk = np.random.uniform(0, 1)
-        logging.warning(f"SIMULATED Fire Risk for {kommune}: {fire_risk:.2f}")
-    else:
-        logging.info(f"Fire Risk for {kommune}: {fire_risk:.2f}")
-    
     # Lagre brannrisiko
     fire_risk_results[kommune] = fire_risk
-    
     # Farge basert på brannrisiko
-    color = mcolors.to_hex(cmap(fire_risk))  
+    maximum_fire_risk = FireRiskPredictionHelper.maximum_fire_risk(fire_risk)
+    normalize_max_fire_risk_value = FireRiskPredictionHelper.normalize_max_fire_risk_value(maximum_fire_risk)
+
+    
+    color = mcolors.to_hex(cmap(normalize_max_fire_risk_value))
     folium.CircleMarker(
         location=(location.latitude, location.longitude),
-        radius=10 + fire_risk * 10,
+        radius=7,
         color=color,
         fill=True,
         fill_color=color,
         fill_opacity=0.7,
-        popup=f"{kommune}: {fire_risk:.2f}",
+        popup=f"{kommune}: {maximum_fire_risk:.2f}",
     ).add_to(fire_map)
+
+
 
 # Sti til lagringsplass
 output_path = "fire_risk_map.html"
@@ -112,4 +126,4 @@ except Exception as e:
 # Skriv ut en samlet oversikt over brannrisiko
 logging.info("\n- Fire Risk Overview -")
 for kommune, risk in fire_risk_results.items():
-    logging.info(f"{kommune}: {risk:.2f}")
+    logging.info(f"{kommune}: {maximum_fire_risk:.2f}")

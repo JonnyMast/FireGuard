@@ -4,12 +4,24 @@ This project uses FastAPI to connect to our Supabase.
 
 ## Running the Project
 
-1. Navigate to the `fastapi_supabase_example` folder:
+1. Create a `.env` file in the root directory with your Supabase credentials:
+    ```sh
+    # .env
+    SUPABASE_URL=your_supabase_url
+    SUPABASE_ANON_KEY=your_anon_key
+    ```
+
+2. Install the required dependencies using Poetry:
+    ```sh
+    poetry install
+    ```
+
+3. Navigate to the `fastapi_supabase_example` folder:
     ```sh
     cd ././fastapi_supabase_example
     ```
 
-2. Run the following command:
+4. Run the following command:
     ```sh
     poetry run python run.py
     ```

@@ -1,3 +1,14 @@
+# FastAPI Example
+
+This is a general example of a FastAPI application demonstrating basic usage and setup.
+
+## Overview
+
+FastAPI is a modern, fast (high-performance) web framework for building APIs with Python 3.7+ based on standard Python type hints. This project shows how to:
+
+- Set up a basic FastAPI application
+- Define routes for GET and POST requests
+
 ## Getting Started
 
 ### Set Working Directory

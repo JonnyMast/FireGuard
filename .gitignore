@@ -1,4 +1,9 @@
 # Ignore .env files
 # We do not want to upload sensitive information
+# such as API keys to our repository
 .env
 .env.*
+
+
+# Ignore __pycache__ folder
+__pycache__/

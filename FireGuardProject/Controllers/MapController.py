@@ -1,22 +1,21 @@
 import sys
 import os
-import sys
+
 print(sys.executable)
 print(sys.path)
 
-
 # Add the project root to Python path
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-print("Project root:", project_root)
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 sys.path.append(project_root)
+print(f"Added to path: {project_root}")
 
-# Print current working directory and Python path
-print("Current working directory:", os.getcwd())
-print("Python path:", sys.path)
+# Change this import:
+# from FireGuardProject.Models.FireRiskPredictionHelper import maximum_fire_risk
+# To this:
+import Models.FireRiskPredictionHelper as FireRiskPredictionHelper
 
 
-# Now update the import statement to use the correct path
-from Models.FireRiskPredictionHelper import maximum_fire_risk
+# Rest of imports remain the same
 import datetime
 import folium
 import matplotlib.colors as mcolors
@@ -86,7 +85,7 @@ kommunesentre = {
 }
 
 # Definer tidsperiode for observasjoner
-obs_delta = datetime.timedelta(days=2)
+obs_delta = datetime.timedelta(days=1)
 
 # Opprett kart sentrert i Hordaland og Sogn og Fjordane
 map_center = (61.0, 6.0)
@@ -107,14 +106,18 @@ for kommune, location in kommunesentre.items():
 
     # Debugging for å sjekke hva API-et returnerer
     logging.debug(f"Raw API response for {kommune}: {fire_risk}")
-    # Lagre brannrisiko
-    fire_risk_results[kommune] = fire_risk
-    # Farge basert på brannrisiko
-    maximum_fire_risk = FireRiskPredictionHelper.maximum_fire_risk(fire_risk)
-    normalize_max_fire_risk_value = FireRiskPredictionHelper.normalize_max_fire_risk_value(maximum_fire_risk)
-
     
-    color = mcolors.to_hex(cmap(normalize_max_fire_risk_value))
+    # Calculate minimum fire risk
+    minimum_ttf = FireRiskPredictionHelper.calculate_minimum_ttf(fire_risk)
+    
+    # Store the calculated value directly
+    fire_risk_results[kommune] = minimum_ttf
+    
+    normalized_max_fire_risk_value = FireRiskPredictionHelper.normalize_max_fire_risk_value(minimum_ttf)
+    
+    # ...rest of your code...
+    
+    color = mcolors.to_hex(cmap(normalized_max_fire_risk_value))
     folium.CircleMarker(
         location=(location.latitude, location.longitude),
         radius=7,
@@ -122,13 +125,13 @@ for kommune, location in kommunesentre.items():
         fill=True,
         fill_color=color,
         fill_opacity=0.7,
-        popup=f"{kommune}: {maximum_fire_risk:.2f}",
+        popup=f"{kommune}: {minimum_ttf:.2f}",
     ).add_to(fire_map)
 
 
 
 # Sti til lagringsplass
-output_path = "fire_risk_map.html"
+output_path = r'FireGuard\FireGuardProject\Views\fire_risk_map.html'
 
 # Prøv å lagre kartet
 try:
@@ -141,5 +144,5 @@ except Exception as e:
 
 # Skriv ut en samlet oversikt over brannrisiko
 logging.info("\n- Fire Risk Overview -")
-for kommune, risk in fire_risk_results.items():
-    logging.info(f"{kommune}: {maximum_fire_risk:.2f}")
+for kommune, risk_value in fire_risk_results.items():
+    logging.info(f"{kommune}: {risk_value:.2f}")

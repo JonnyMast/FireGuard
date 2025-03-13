@@ -14,14 +14,14 @@ from frcm.datamodel.model import Location, FireRiskPrediction
 
 
 
-def maximum_fire_risk(fire_risk_prediction: FireRiskPrediction) -> bool:
-    return max(risk.ttf for risk in fire_risk_prediction.firerisks)
+def calculate_minimum_ttf(fire_risk_prediction: FireRiskPrediction) -> bool:
+    return min(risk.ttf for risk in fire_risk_prediction.firerisks)
      
 
 
 def normalize_max_fire_risk_value(fire_risk_prediction: float) -> float:
 
-    fire_risk_prediction = fire_risk_prediction- 5.5
+    fire_risk_prediction = fire_risk_prediction- 4.0
     fire_risk_prediction = fire_risk_prediction / 2.5
     min_max_prediction:float = min(max(fire_risk_prediction,0) , 1)
     return min_max_prediction 

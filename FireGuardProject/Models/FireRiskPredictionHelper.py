@@ -12,8 +12,7 @@ from dotenv import load_dotenv
 from frcm.frcapi import METFireRiskAPI
 from frcm.datamodel.model import Location, FireRiskPrediction
 
-# Import the module
-from fireguardproject.Models import FireRiskPredictionHelper
+
 
 def maximum_fire_risk(fire_risk_prediction: FireRiskPrediction) -> bool:
     return max(risk.ttf for risk in fire_risk_prediction.firerisks)

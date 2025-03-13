@@ -1,5 +1,22 @@
 import sys
 import os
+import sys
+print(sys.executable)
+print(sys.path)
+
+
+# Add the project root to Python path
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+print("Project root:", project_root)
+sys.path.append(project_root)
+
+# Print current working directory and Python path
+print("Current working directory:", os.getcwd())
+print("Python path:", sys.path)
+
+
+# Now update the import statement to use the correct path
+from Models.FireRiskPredictionHelper import maximum_fire_risk
 import datetime
 import folium
 import matplotlib.colors as mcolors
@@ -12,8 +29,7 @@ from dotenv import load_dotenv
 from frcm.frcapi import METFireRiskAPI
 from frcm.datamodel.model import Location, FireRiskPrediction
 
-# Import the module
-from fireguardproject.Models import FireRiskPredictionHelper
+
 
 
 print(os.getcwd())  # Shows where Python is currently running from
@@ -70,7 +86,7 @@ kommunesentre = {
 }
 
 # Definer tidsperiode for observasjoner
-obs_delta = datetime.timedelta(days=20)
+obs_delta = datetime.timedelta(days=2)
 
 # Opprett kart sentrert i Hordaland og Sogn og Fjordane
 map_center = (61.0, 6.0)

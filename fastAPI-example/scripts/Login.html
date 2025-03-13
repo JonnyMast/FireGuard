@@ -1,20 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
 <body>
+    <h2>Fire Guard</h2>
 
-<h2>Fire Guard</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br>
 
-<form action="/Login" method="POST">
-  <label for="username">Username:</label><br>
-  <input type="text" id="username" name="username" required><br>
-  <label for="password">Password:</label><br>
-  <input type="password" id="password" name="password" required><br><br>
-  <input type="submit" value="Log in">
-</form>
-<p style="color: red;">{{ message }}</p>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
 
+        <input type="submit" value="Log in">
+    </form>
 
-<p>Please enter username and password</p>
+    <p id="message"></p>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("loginForm");
+
+            if (!form) {
+                console.error("Error: loginForm not found!");
+                return;
+            }
+
+            form.addEventListener("submit", async function(event) {
+                event.preventDefault();
+
+                console.log("✅ Login form submitted!");
+
+                const username = document.getElementById("username").value;
+                const password = document.getElementById("password").value;
+
+                const response = await fetch("/Login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+                });
+
+                console.log("Received response from server");
+
+                const result = await response.json();
+
+                console.log("Parsed JSON response:", result);
+
+                if (result.access_token) {
+                    console.log("✅ Token received, storing in localStorage...");
+                    localStorage.setItem("jwt", result.access_token);
+                    window.location.href = "/fire_risk_map";  // Redirect to protected page
+                } else {
+                    console.log("Login failed:", result.detail);
+                    document.getElementById("message").innerText = result.detail;
+                }
+            });
+        });
+    </script>
 </body>
 </html>

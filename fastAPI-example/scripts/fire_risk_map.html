@@ -37,8 +37,7 @@
         
 </head>
 <body>
-    
-    
+            <div id="content"></div>
             <div class="folium-map" id="map_43400b3e610bfa9d774239d4a7608a71" ></div>
         
 </body>
@@ -268,3 +267,58 @@
     
 </script>
 </html>
+
+<body>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("🔥 fire_risk_map script is running!"); 
+            loadProtectedData();
+        });
+
+        async function loadProtectedData() {
+            console.log("🚀 loadProtectedData function is executing!");
+
+            const token = localStorage.getItem("jwt");
+
+            if (!token) {
+                console.warn("❌ No token found! Redirecting to login...");
+                window.location.href = "/";  // Redirect to login
+                return;
+            }
+
+            console.log("✅ Token found in localStorage:", token);
+
+            const headers = new Headers({
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
+            });
+
+            console.log("📌 Headers before sending request:", headers);
+
+            try {
+                const response = await fetch("/fire_risk_map", {
+                    method: "GET",
+                    headers: headers
+                });
+
+                console.log("📌 Sent Authorization Header:", headers.get("Authorization"));
+
+                console.log("📌 Response Headers:", [...response.headers.entries()]);
+
+                const result = await response.json();
+                console.log("📌 Response from server:", result);
+
+                if (response.status === 401) {
+                    console.warn("❌ Token invalid or expired, redirecting to login...");
+                    localStorage.removeItem("jwt");  // Remove invalid token
+                    window.location.href = "/";  // Redirect to login
+                } else {
+                    console.log("✅ Successfully authenticated:", result);
+                    document.getElementById("content").innerText = result.message;
+                }
+            } catch (error) {
+                console.error("⚠️ Fetch error:", error);
+            }
+        }
+    </script>
+</body>

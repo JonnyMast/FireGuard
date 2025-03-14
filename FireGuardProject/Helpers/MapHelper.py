@@ -12,7 +12,8 @@ print(f"Added to path: {project_root}")
 # Change this import:
 # from FireGuardProject.Models.FireRiskPredictionHelper import maximum_fire_risk
 # To this:
-import FireGuard.FireGuardProject.Helpers.FireRiskPredictionHelper as FireRiskPredictionHelper
+# Or more simply:
+import Helpers.FireRiskPredictionHelper as FireRiskPredictionHelper
 
 
 # Rest of imports remain the same
@@ -35,6 +36,7 @@ from frcm.datamodel.model import Location, FireRiskPrediction
 
 
 def MakeMap(number_of_days: int = 10):
+    number_of_days: int = 10
     print(os.getcwd())  # Shows where Python is currently running from
     
     load_dotenv()
@@ -115,7 +117,7 @@ def MakeMap(number_of_days: int = 10):
             fill=True,
             fill_color=color,
             fill_opacity=0.7,
-            popup=f"{kommune}: {fire_risk:.2f}",
+            popup=f"{kommune}: {minimum_ttf:.2f}",
         ).add_to(fire_map)
 
     output_path = r'FireGuard\FireGuardProject\Views\fire_risk_map.html'
@@ -130,3 +132,4 @@ def MakeMap(number_of_days: int = 10):
     logging.info("\n- Fire Risk Overview -")
     for kommune, risk_value in fire_risk_results.items():
         logging.info(f"{kommune}: {risk_value:.2f}")
+    return 

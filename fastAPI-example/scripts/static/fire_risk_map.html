@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
     
@@ -60,9 +61,6 @@
             );
 
             
-
-        
-    
             var tile_layer_c77999a695bf42e46b25e4500154ca63 = L.tileLayer(
                 "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {
@@ -338,41 +336,4 @@
 </script>
 </html>
 
-<script>
-    function loadProtectedData() {
-        console.log("🔥 JavaScript is running! ✅"); // Debugging Step
 
-        const token = localStorage.getItem("jwt");
-
-        if (!token) {
-            console.warn("❌ No token found! Redirecting to login...");
-            window.location.href = "/";  // Redirect to login page
-            return;
-        }
-
-        console.log("✅ Token found in localStorage:", token);
-
-        const headers = new Headers({
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json"
-        });
-
-        console.log("📌 Sending request with headers:", headers.get("Authorization"));
-
-        fetch("/fire_risk_map", {
-            method: "GET",
-            headers: headers
-        })
-        .then(response => {
-            console.log("📌 Response status:", response.status);
-            return response.json();
-        })
-        .then(result => {
-            console.log("📌 Response from server:", result);
-            document.getElementById("content").innerText = result.message;
-        })
-        .catch(error => console.error("⚠️ Fetch error:", error));
-    }
-
-    document.addEventListener("DOMContentLoaded", loadProtectedData);
-</script>

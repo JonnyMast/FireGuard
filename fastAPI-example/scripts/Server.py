@@ -13,7 +13,23 @@ import datetime
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from fastapi import Header
 
+# Load environment variables
+load_dotenv()
+SUPABASE_URL = os.getenv("NEXT_PUBLIC_SUPABASE_URL")
+SUPABASE_KEY = os.getenv("NEXT_PUBLIC_SUPABASE_ANON_KEY")
+
+# JWT Secret Key (replace this with a strong secret in production!)
+SECRET_KEY = "7774614087add478b9dfacd0f621ed0b4108e45a9a9bbb36f63875ec2632c70985740496b1ccc623ee117a3dd684e6542244dda5c146cc727b0568cae05a037b"
+ALGORITHM = "HS256"
+TOKEN_EXPIRATION_MINUTES = 100  # Token validity duration
+
+# OAuth2 scheme for token authentication
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
+
+# Connect to Supabase
+supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 def create_jwt_token(data: dict):
     """Generate JWT token with an expiration time."""
@@ -23,58 +39,37 @@ def create_jwt_token(data: dict):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
-# Load environment variables
-load_dotenv()
-SUPABASE_URL = os.getenv("NEXT_PUBLIC_SUPABASE_URL")
-SUPABASE_KEY = os.getenv("NEXT_PUBLIC_SUPABASE_ANON_KEY")
-
-# JWT Secret Key (replace this with a strong secret in production!)
-SECRET_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJBbmRyZWEiLCJleHAiOjE3NDA2NzM1MDV9._ZiK2ypEM4j9_wZ1msHuLJuEFrpSfw9E3luOG5OvrpU"
-ALGORITHM = "HS256"
-TOKEN_EXPIRATION_MINUTES = 30  # Token validity duration
-
-# OAuth2 scheme for token authentication
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
-
-# Connect to Supabase
-supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
-
 def verify_jwt_token(token: str = Depends(oauth2_scheme)):
+    print(f"🔍 Received token in FastAPI: {token}")  # ✅ Debugging
+
     try:
-
-        print(f"🔍 Received token: {token}")  # ✅ Debugging to see if FastAPI gets the token
-
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
 
         if username is None:
             raise HTTPException(status_code=401, detail="Invalid token")
+        
+        print(f"✅ Token valid for user: {username}")  # ✅ Debugging
         return username
 
     except jwt.ExpiredSignatureError:
+        print("❌ Token expired")
         raise HTTPException(status_code=401, detail="Token expired")
+    
     except jwt.InvalidTokenError:
+        print("❌ Invalid token")
         raise HTTPException(status_code=401, detail="Invalid token")
-
 
 app = FastAPI()
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # ⚠️ Allow all origins (for testing) - You can restrict this later
-    allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods
-    allow_headers=["*"],  # Allow all headers (including Authorization)
-)
-
 # Mount the current directory as a static directory
-app.mount("/static", StaticFiles(directory="."), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory=".")
 
 @app.get("/", response_class=HTMLResponse)
 async def login_page(request: Request):
-    return templates.TemplateResponse("static/Login.html", {"request": request, "message": ""})
+    return templates.TemplateResponse("/static/Login.html", {"request": request, "message": ""})
 
 @app.post("/Login")
 async def login(username: str = Form(...), password: str = Form(...)):
@@ -93,15 +88,35 @@ async def login(username: str = Form(...), password: str = Form(...)):
 
     raise HTTPException(status_code=401, detail="Invalid username or password")
 
-@app.get("/fire_risk_map", response_class=HTMLResponse)
-async def fire_risk_page():
-    with open("static/fire_risk_map.html", "r", encoding="utf-8") as f:
-        return HTMLResponse(content=f.read())
+@app.get("/fire_risk_map", response_class=FileResponse)
+async def fire_risk_page(request: Request, authorization: str = Header(None)):
+    """ Authenticate user before serving the fire risk map page. """
+    if authorization is None or not authorization.startswith("Bearer "):
+        print("❌ No valid Authorization header found. Redirecting to login page.")
+        return RedirectResponse(url="/")  # Redirect to login page
 
-@app.get("/jwt_test", response_class=HTMLResponse)
-async def jwt_test_page():
-    with open("static/jwt_test.html", "r", encoding="utf-8") as f:
-        return HTMLResponse(content=f.read())
+    token = authorization.split(" ")[1]  # Extract token after "Bearer "
+    print(f"🔍 Extracted Token: {token}")
+
+    try:
+        # Decode JWT token
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        username: str = payload.get("sub")
+
+        if username is None:
+            raise HTTPException(status_code=401, detail="Invalid token")
+
+        print(f"✅ Serving fire_risk_map.html for user: {username}")
+        return FileResponse("static/fire_risk_map.html")
+
+    except jwt.ExpiredSignatureError:
+        print("❌ Token expired. Redirecting to login page.")
+        return RedirectResponse(url="/")
+
+    except jwt.InvalidTokenError:
+        print("❌ Invalid token. Redirecting to login page.")
+        return RedirectResponse(url="/")
+
 
 @app.post("/register")
 async def register(username: str = Form(...), password: str = Form(...)):

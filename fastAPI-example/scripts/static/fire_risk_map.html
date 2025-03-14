@@ -35,12 +35,46 @@
                 }
                 .leaflet-container { font-size: 1rem; }
             </style>
+
+            <style>
+                #logoutContainer {
+                    position: absolute;
+                    top: 75px; /* Move it lower */
+                    left: 10px;
+                    background: white;
+                    padding: 5px;
+                    border-radius: 4px;
+                    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+                }
+
+                #logoutButton {
+                    background-color: white;
+                    border: none;
+                    padding: 8px;
+                    cursor: pointer;
+                    font-size: 14px;
+                }
+
+                #logoutButton:hover {
+                    background-color: #f4f4f4;
+                }
+            </style>
+
+
         
 </head>
 <body>
     
     
             <div class="folium-map" id="map_d0bb5403ac5d84c0f1ab7e26d58c4237" ></div>
+
+            <div id="logoutContainer" class="leaflet-control leaflet-bar">
+                <button id="logoutButton" class="leaflet-control-button">Log Out</button>
+            </div>
+            
+            <script src="static/logout.js"></script>
+
+
         
 </body>
 <script>

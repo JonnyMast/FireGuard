@@ -28,17 +28,16 @@ import os
 from dotenv import load_dotenv
 from frcm.frcapi import METFireRiskAPI
 from frcm.datamodel.model import Location, FireRiskPrediction
-
+from folium import Element
 
 class MapHelper:
 
 
-
-
     def MakeMap(number_of_days: int = 10):
+
         number_of_days: int = 10
         print(os.getcwd())  # Shows where Python is currently running from
-        
+
         load_dotenv()
         # This implementation avoids accedental uploads of keys, but require a .env file 
         # Make sure to add .env to .gitignore before pushing
@@ -91,6 +90,19 @@ class MapHelper:
 
 
         cmap = mcolors.LinearSegmentedColormap.from_list("fire_risk", ["red", "yellow", "green"])
+        # In your MakeMap function, add this before saving the map:
+
+        external_files_html = """
+        <link rel="stylesheet" href="fire_risk_map_style.css">
+        <div id="logoutContainer" class="leaflet-control leaflet-bar">
+            <button id="logoutButton" class="leaflet-control-button">Log Out</button>
+        </div>
+        <script src="Logout.js"></script>
+        """
+
+
+        fire_map.get_root().html.add_child(Element(external_files_html))
+
 
 
 
@@ -120,7 +132,7 @@ class MapHelper:
                 popup=f"{kommune}: {minimum_ttf:.2f}",
             ).add_to(fire_map)
 
-      # To this (using os.path.join for cross-platform compatibility):
+        # To this (using os.path.join for cross-platform compatibility):
         output_path = os.path.join('Views', 'fire_risk_map.html')
 
         # Or more simply:

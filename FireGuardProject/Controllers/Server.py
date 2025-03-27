@@ -19,14 +19,18 @@ from fastapi import Header
 import logging
 import asyncio
 import sys
+
 # Add the project root to the Python path
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if project_root not in sys.path:
     sys.path.append(project_root)
     print(f"Added to path: {project_root}")
 
+from Controllers.MapHelper import MapHelper
+
+
 # Now import using the correct path
-from Helpers.MapHelper import MapHelper
+
 
 load_dotenv()
 SUPABASE_URL = os.getenv("NEXT_PUBLIC_SUPABASE_URL")
@@ -35,7 +39,7 @@ SUPABASE_KEY = os.getenv("NEXT_PUBLIC_SUPABASE_ANON_KEY")
 # JWT Secret Key (replace this with a strong secret in production!)
 SECRET_KEY = "7774614087add478b9dfacd0f621ed0b4108e45a9a9bbb36f63875ec2632c70985740496b1ccc623ee117a3dd684e6542244dda5c146cc727b0568cae05a037b"
 ALGORITHM = "HS256"
-TOKEN_EXPIRATION_MINUTES = 100  # Token validity duration
+TOKEN_EXPIRATION_MINUTES = 1000  # Token validity duration
 
 # OAuth2 scheme for token authentication
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
@@ -107,32 +111,26 @@ async def fire_risk_page(request: Request, authorization: str = Header(None)):
     """ Authenticate user before serving the fire risk map page. """
     if authorization is None or not authorization.startswith("Bearer "):
         print("❌ No valid Authorization header found. Redirecting to login page.")
+        print(authorization)
         return RedirectResponse(url="/")  # Redirect to login page
 
     token = authorization.split(" ")[1]  # Extract token after "Bearer "
     print(f"🔍 Extracted Token: {token}")
 
-    try:
-        # Decode JWT token
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
 
-        if username is None:
-            raise HTTPException(status_code=401, detail="Invalid token")
+    # Decode JWT token
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+    username: str = payload.get("sub")
 
-        logging.info(f"✅ Serving fire_risk_map.html for user: {username}")
+    if username is None:
+        raise HTTPException(status_code=401, detail="Invalid token")
 
-        MapHelper.MakeMap()
-        print(f"✅ Serving fire_risk_map.html for user: {username}")
-        return FileResponse("Views/fire_risk_map.html")
+    logging.info(f"✅ Serving fire_risk_map.html for user: {username}")
 
-    except jwt.ExpiredSignatureError:
-        print("❌ Token expired. Redirecting to login page.")
-        return RedirectResponse(url="/")
+    #MapHelper.MakeMap()
+    print(f"✅ Serving fire_risk_map.html for user: {username}")
+    return FileResponse("Views/fire_risk_map.html")
 
-    except jwt.InvalidTokenError:
-        print("❌ Invalid token. Redirecting to login page.")
-        return RedirectResponse(url="/")
 
 
 @app.post("/register")

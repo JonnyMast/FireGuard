@@ -38,6 +38,12 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Login failed:", result.detail);
       document.getElementById("message").innerText = result.detail;
     }
+    // ✅ Load stored token if available
+    const storedToken = localStorage.getItem("jwt");
+    if (storedToken) {
+      console.log("✅ Token found in localStorage. Attempting to load map...");
+      loadFireRiskMap();
+    }
   });
 
   // ✅ Function to request fire_risk_map with Authorization header
@@ -64,12 +70,5 @@ document.addEventListener("DOMContentLoaded", function () {
       console.error("❌ Authentication failed! Redirecting to login...");
       window.location.href = "/";
     }
-  }
-
-  // ✅ Load stored token if available
-  const storedToken = localStorage.getItem("jwt");
-  if (storedToken) {
-    console.log("✅ Token found in localStorage. Attempting to load map...");
-    loadFireRiskMap();
   }
 });

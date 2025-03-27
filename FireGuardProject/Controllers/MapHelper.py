@@ -30,6 +30,11 @@ from frcm.frcapi import METFireRiskAPI
 from frcm.datamodel.model import Location, FireRiskPrediction
 from folium import Element
 
+# Print current working directory
+print("---------------------------------------------------------------------------------")
+print(f"Current working directory: {os.getcwd()}")
+
+# Print absolute path to this file
 class MapHelper:
 
 
@@ -37,6 +42,8 @@ class MapHelper:
 
         number_of_days: int = 10
         print(os.getcwd())  # Shows where Python is currently running from
+
+        print(sys.path)  # Shows the Python path)
 
         load_dotenv()
         # This implementation avoids accedental uploads of keys, but require a .env file 
@@ -70,16 +77,16 @@ class MapHelper:
 
         kommunesentre = {
             "Bergen": Location(latitude=60.39299, longitude=5.32415),
-            "Stord": Location(latitude=59.77924, longitude=5.50075),
-            "Odda": Location(latitude=60.06928, longitude=6.54639),
-            "Voss": Location(latitude=60.62769, longitude=6.41594),
-            "Førde": Location(latitude=61.45103, longitude=5.86358),
-            "Sogndal": Location(latitude=61.22934, longitude=7.10377),
-            "Florø": Location(latitude=61.59939, longitude=5.03249),
-            "Nordfjordeid": Location(latitude=61.90579, longitude=5.99109),
-            "Tønsberg": Location(latitude=59.2671, longitude=10.4076),
-            "Oslo": Location(latitude=59.9139, longitude=10.7522),
-            "Trondheim": Location(latitude=63.4305, longitude=10.3951),
+            #"Stord": Location(latitude=59.77924, longitude=5.50075),
+            #"Odda": Location(latitude=60.06928, longitude=6.54639),
+            #"Voss": Location(latitude=60.62769, longitude=6.41594),
+            #"Førde": Location(latitude=61.45103, longitude=5.86358),
+            #"Sogndal": Location(latitude=61.22934, longitude=7.10377),
+            #"Florø": Location(latitude=61.59939, longitude=5.03249),
+            #"Nordfjordeid": Location(latitude=61.90579, longitude=5.99109),
+            #"Tønsberg": Location(latitude=59.2671, longitude=10.4076),
+            #"Oslo": Location(latitude=59.9139, longitude=10.7522),
+            #"Trondheim": Location(latitude=63.4305, longitude=10.3951),
         }
 
         obs_delta = datetime.timedelta(days=number_of_days)
@@ -132,11 +139,10 @@ class MapHelper:
                 popup=f"{kommune}: {minimum_ttf:.2f}",
             ).add_to(fire_map)
 
-        # To this (using os.path.join for cross-platform compatibility):
-        output_path = os.path.join('Views', 'fire_risk_map.html')
-
+        views_dir = os.path.join(project_root, 'Views')
         # Or more simply:
-        output_path = 'Views/fire_risk_map.html'  # Forward slashes work on both Windows and Linux
+        output_path = os.path.join(views_dir, 'fire_risk_map.html')
+       
         try:
             fire_map.save(output_path)
             logging.info(f"- Brannrisikokart lagret til: {output_path}")

@@ -113,6 +113,8 @@ async def fire_risk_page(request: Request, authorization: str = Header(None)):
         print("❌ No valid Authorization header found. Redirecting to login page.")
         print(authorization)
         return RedirectResponse(url="/")  # Redirect to login page
+    else:
+        MapHelper.MakeMap()
 
     token = authorization.split(" ")[1]  # Extract token after "Bearer "
     print(f"🔍 Extracted Token: {token}")
@@ -127,7 +129,7 @@ async def fire_risk_page(request: Request, authorization: str = Header(None)):
 
     logging.info(f"✅ Serving fire_risk_map.html for user: {username}")
 
-    #MapHelper.MakeMap()
+  
     print(f"✅ Serving fire_risk_map.html for user: {username}")
     return FileResponse("Views/fire_risk_map.html")
 

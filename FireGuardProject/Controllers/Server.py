@@ -5,7 +5,7 @@ from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.security import OAuth2PasswordBearer
 from fastapi.responses import JSONResponse
-import jwt
+import jwt as pyjwt  
 from starlette.requests import Request
 from supabase import create_client
 from dotenv import load_dotenv
@@ -51,31 +51,36 @@ supabase = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 def create_jwt_token(data: dict):
     """Generate JWT token with an expiration time."""
-    to_encode = data.copy()
-    expire = datetime.datetime.utcnow() + datetime.timedelta(minutes=TOKEN_EXPIRATION_MINUTES)
-    to_encode.update({"exp": expire})  # Add expiration time
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
+    try:
+        to_encode = data.copy()
+        expire = datetime.datetime.utcnow() + datetime.timedelta(minutes=TOKEN_EXPIRATION_MINUTES)
+        to_encode.update({"exp": expire})
+        
+        encoded_jwt = pyjwt.encode(
+            to_encode, 
+            SECRET_KEY, 
+            algorithm=ALGORITHM
+        )
+        return encoded_jwt
+        
+    except Exception as e:
+        logging.error(f"[AUTH] Token generation failed: {str(e)}")
+        raise HTTPException(status_code=500, detail="Token generation failed")
 
 def verify_jwt_token(token: str = Depends(oauth2_scheme)):
-    print(f"🔍 Received token in FastAPI: {token}")  # ✅ Debugging
-
+    """Verify and decode JWT token."""
     try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        payload = pyjwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
-
-        if username is None:
+        if not username:
             raise HTTPException(status_code=401, detail="Invalid token")
-        
-        print(f"✅ Token valid for user: {username}")  # ✅ Debugging
         return username
-
-    except jwt.ExpiredSignatureError:
-        print("❌ Token expired")
+        
+    except pyjwt.ExpiredSignatureError:
+        logging.error("[AUTH] Token expired")
         raise HTTPException(status_code=401, detail="Token expired")
-    
-    except jwt.InvalidTokenError:
-        print("❌ Invalid token")
+    except pyjwt.InvalidTokenError:
+        logging.error("[AUTH] Invalid token")
         raise HTTPException(status_code=401, detail="Invalid token")
 
 app = FastAPI()
@@ -121,7 +126,7 @@ async def fire_risk_page(request: Request, authorization: str = Header(None)):
 
 
     # Decode JWT token
-    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+    payload = pyjwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
     username: str = payload.get("sub")
 
     if username is None:

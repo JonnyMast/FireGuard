@@ -36,11 +36,19 @@ print(f"Current working directory: {os.getcwd()}")
 
 # Print absolute path to this file
 class MapHelper:
-
-
+    @staticmethod
     def MakeMap(number_of_days: int = 10):
+        # Configure logging with UTF-8 encoding
+          # Configure logging with UTF-8 encoding
+        logging.basicConfig(
+            level=logging.DEBUG,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler("fire_risk_log.txt", encoding='utf-8'),
+                logging.StreamHandler()
+            ]
+        )
 
-        number_of_days: int = 10
         print(os.getcwd())  # Shows where Python is currently running from
 
         print(sys.path)  # Shows the Python path)
@@ -77,8 +85,8 @@ class MapHelper:
 
         kommunesentre = {
             "Bergen": Location(latitude=60.39299, longitude=5.32415),
-            #"Stord": Location(latitude=59.77924, longitude=5.50075),
-            #"Odda": Location(latitude=60.06928, longitude=6.54639),
+            "Stord": Location(latitude=59.77924, longitude=5.50075),
+            "Odda": Location(latitude=60.06928, longitude=6.54639),
             #"Voss": Location(latitude=60.62769, longitude=6.41594),
             #"Førde": Location(latitude=61.45103, longitude=5.86358),
             #"Sogndal": Location(latitude=61.22934, longitude=7.10377),
@@ -144,13 +152,21 @@ class MapHelper:
         output_path = os.path.join(views_dir, 'fire_risk_map.html')
        
         try:
+            # Ensure Views directory exists
+            os.makedirs(views_dir, exist_ok=True)
+            
+            # Save map
             fire_map.save(output_path)
-            logging.info(f"- Brannrisikokart lagret til: {output_path}")
-            logging.info("- Åpne filen i en nettleser for å se visualiseringen.")
+            logging.info(f"[MAP] Saved to: {output_path}")
+            logging.info("[MAP] Open in browser to view visualization")
         except Exception as e:
-            logging.error(f"⚠- Kunne ikke lagre kartet: {e}")
-            logging.error("- Prøv å lagre filen i en annen mappe, f.eks. Skrivebordet.")
-        logging.info("\n- Fire Risk Overview -")
-        for kommune, risk_value in fire_risk_results.items():
-            logging.info(f"{kommune}: {risk_value:.2f}")
-        return 
+            logging.error(f"[ERROR] Could not save map: {str(e)}")
+            logging.error("[INFO] Try saving to a different location")
+            raise
+
+        # Log fire risk overview
+        logging.info("\n[FIRE RISK OVERVIEW]")
+        #for kommune, risk_value in fire_risk_results.items():
+            #logging.info(f"{kommune}: {risk_value:.2f}")
+
+        return output_path

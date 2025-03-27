@@ -2,72 +2,74 @@ document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("loginForm");
 
   if (!form) {
-    console.error("Error: loginForm not found!");
+    console.log("[ERROR] loginForm not found");
     return;
   }
 
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
-
-    console.log("✅ Login form submitted!");
+    console.log("[AUTH] Processing login request");
 
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
-    const response = await fetch("/Login", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: `username=${encodeURIComponent(
-        username
-      )}&password=${encodeURIComponent(password)}`,
-    });
+    try {
+      const response = await fetch("/Login", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `username=${encodeURIComponent(
+          username
+        )}&password=${encodeURIComponent(password)}`,
+      });
 
-    console.log("Received response from server");
+      const result = await response.json();
+      console.log("[AUTH] Server response received");
 
-    const result = await response.json();
-
-    console.log("Parsed JSON response:", result);
-
-    if (result.access_token) {
-      console.log("✅ Token received, storing in localStorage...");
-      localStorage.setItem("jwt", result.access_token);
-
-      // ✅ Instead of redirecting, manually fetch fire_risk_map
-      loadFireRiskMap();
-    } else {
-      console.log("Login failed:", result.detail);
-      document.getElementById("message").innerText = result.detail;
-    }
-    // ✅ Load stored token if available
-    const storedToken = localStorage.getItem("jwt");
-    if (storedToken) {
-      console.log("✅ Token found in localStorage. Attempting to load map...");
-      loadFireRiskMap();
+      if (result.access_token) {
+        console.log("[AUTH] Token received");
+        localStorage.setItem("jwt", result.access_token);
+        await loadMapContent(); // Load map content directly
+      } else {
+        console.log("[ERROR] Login failed:", result.detail);
+        document.getElementById("message").innerText = result.detail;
+      }
+    } catch (error) {
+      console.error("[ERROR] Login request failed:", error);
+      document.getElementById("message").innerText =
+        "Login failed. Please try again.";
     }
   });
 
-  // ✅ Function to request fire_risk_map with Authorization header
-  async function loadFireRiskMap() {
+  async function loadMapContent() {
     const token = localStorage.getItem("jwt");
-
     if (!token) {
-      console.warn("❌ No token found! Redirecting to login...");
+      console.log("[AUTH] No token found");
       window.location.href = "/";
       return;
     }
 
-    console.log("📌 Requesting /fire_risk_map with Authorization header...");
+    try {
+      const response = await fetch("/fire_risk_map", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          Accept: "text/html",
+        },
+      });
 
-    const response = await fetch("/fire_risk_map", {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    if (response.status === 200) {
-      console.log("✅ Successfully authenticated! Redirecting...");
-      window.location.href = "/fire_risk_map";
-    } else {
-      console.error("❌ Authentication failed! Redirecting to login...");
+      if (response.ok) {
+        const content = await response.text();
+        document.open();
+        document.write(content);
+        document.close();
+        console.log("[SUCCESS] Map loaded");
+      } else {
+        console.log("[ERROR] Failed to load map");
+        localStorage.removeItem("jwt");
+        window.location.href = "/";
+      }
+    } catch (error) {
+      console.error("[ERROR] Map request failed:", error);
       window.location.href = "/";
     }
   }

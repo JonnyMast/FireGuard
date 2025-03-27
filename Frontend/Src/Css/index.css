@@ -1,0 +1,179 @@
+/* FireGuard Main Styles */
+
+:root {
+    --primary-color: #e74c3c;
+    --secondary-color: #f39c12;
+    --dark-color: #2c3e50;
+    --light-color: #ecf0f1;
+    --danger-color: #c0392b;
+    --success-color: #27ae60;
+    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease-in-out;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+  }
+  
+  /* Header Styles */
+  header {
+    background: linear-gradient(135deg, var(--primary-color), var(--danger-color));
+    color: white;
+    padding: 1.5rem 0;
+    box-shadow: var(--box-shadow);
+  }
+  
+  header h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  
+  nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+  }
+  
+  nav ul li {
+    margin: 0 1rem;
+  }
+  
+  nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: var(--transition);
+  }
+  
+  nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Main Content */
+  main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+  }
+  
+  section {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+  }
+  
+  section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+  
+  section p {
+    margin-bottom: 1.5rem;
+    color: #555;
+  }
+  
+  /* Buttons */
+  button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: var(--danger-color);
+    transform: translateY(-3px);
+  }
+  
+  #getStarted {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+  }
+  
+  /* Form */
+  form {
+    display: flex;
+    gap: 0.5rem;
+    max-width: 500px;
+  }
+  
+  input[type="email"] {
+    flex: 1;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: var(--dark-color);
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 2rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    header h1 {
+      font-size: 2rem;
+    }
+    
+    nav ul {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    nav ul li {
+      margin: 0.5rem 0;
+    }
+    
+    form {
+      flex-direction: column;
+    }
+    
+    button[type="submit"] {
+      width: 100%;
+    }
+  }
+  
+  /* First section highlight */
+  section:first-of-type {
+    background: linear-gradient(to right, #fff, #ffeaa7);
+    border-left: 5px solid var(--secondary-color);
+  }
+  
+  /* How it works section */
+  section:nth-of-type(2) {
+    background-color: #f8f9fa;
+  }
+  
+  /* Newsletter section */
+  section:last-of-type {
+    background-color: #f8f9fa;
+    border-top: 3px solid var(--success-color);
+  }

@@ -68,6 +68,5 @@ logs/
 *.sqlite
 *.db
 
-# Compiled static files
-public/
+
 dist/

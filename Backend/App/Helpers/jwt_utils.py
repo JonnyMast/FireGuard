@@ -1,6 +1,5 @@
 import jwt
 import time
-from supabase import create_client
 from dotenv import load_dotenv
 import os
 
@@ -75,8 +74,10 @@ def verify_jwt(token: str, database) -> bool:
 
         if token_type == "client":
             client_secret = decoded.get("client_secret")
-            result = database.table("api_clients").select("client_secret").eq("client_id", sub).execute()
-            return result.data and result.data[0]["client_secret"] == client_secret
+            result = database.table("api_clients").select("client_secret", "active").eq("client_id", sub).execute()
+            return (result.data and 
+               result.data[0]["client_secret"] == client_secret and
+               result.data[0]["active"])
         
         elif token_type == "user":
             result = database.table("users").select("active").eq("username", sub).execute()
@@ -87,21 +88,3 @@ def verify_jwt(token: str, database) -> bool:
         
     except (jwt.ExpiredSignatureError, jwt.InvalidTokenError):
         return False
-
-
-# Example usage
-if __name__ == "__main__":
-    # Client example
-    supabase = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
-    client_id = "FIRS-C-5469301b"
-    client_secret = "DDwED7wdek5mJnU1Ns7WomZZn7Uemnk3GqzfURkBtOI"
-
-    client_token = create_client_jwt(client_id, client_secret)
-    print(f"Client JWT: {client_token}")
-    print(f"Client token valid? {verify_jwt(client_token, supabase)}")
-
-    # User example
-    username = "testuser123"
-    user_token = create_user_jwt(username)
-    print(f"User JWT: {user_token}")
-    print(f"User token valid? {verify_jwt(user_token, supabase)}")

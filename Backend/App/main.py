@@ -1,13 +1,12 @@
 from fastapi import FastAPI
-from app.api.routes import users, henriktest
+from App.API.Routes import clients
 
 app = FastAPI(title="FastAPI Supabase Example")
 
 # Define which routers to include 
 # Note the prefixes "/api" for each router
 # This means that the routes will be available at 127.0.0.1/api/{route}
-app.include_router(users.router, prefix="/api")
-app.include_router(henriktest.router, prefix="/api")
+app.include_router(clients.router, prefix="/api")
 
 # Define a root path
 @app.get("/")

@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = "FireGuard Backend Service"
+authors = ["Example <author@example.com>"]
+readme = "README.md"
+packages = [{include = "App"}]
+
+[tool.poetry.dependencies]
+python = ">=3.13,<3.14"
+supabase = "^2.15.0"
+fastapi = "^0.115.12"
+uvicorn = "^0.34.0"
+python-dotenv = "^1.1.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

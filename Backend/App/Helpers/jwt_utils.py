@@ -88,12 +88,13 @@ def verify_jwt(token: str, database) -> bool:
     except (jwt.ExpiredSignatureError, jwt.InvalidTokenError):
         return False
 
+
 # Example usage
 if __name__ == "__main__":
     # Client example
     supabase = create_client(SUPABASE_URL, SUPABASE_ANON_KEY)
     client_id = "FIRS-C-5469301b"
-    client_secret = ""
+    client_secret = "DDwED7wdek5mJnU1Ns7WomZZn7Uemnk3GqzfURkBtOI"
 
     client_token = create_client_jwt(client_id, client_secret)
     print(f"Client JWT: {client_token}")

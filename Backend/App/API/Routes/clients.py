@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from App.Services.supabase_service import supabase_service
+from App.Services.SupabaseService import supabase_service
 from pydantic import BaseModel
 
 # Define a router for the henriktest table

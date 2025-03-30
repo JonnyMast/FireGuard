@@ -21,6 +21,19 @@ class SupabaseService:
     def get_all_clients(self):
         response = self.supabase.table('api_clients').select('*').execute()
         return response.data
+    
+    
+    def verify_client(self, client_id, client_secret):
+        """Verify client credentials against database"""
+        result = self.supabase.table("api_clients").select("client_secret", "active").eq("client_id", client_id).execute()
+        return (result.data and 
+                result.data[0]["client_secret"] == client_secret and
+                result.data[0]["active"])
+                
+    def verify_user(self, username):
+        """Verify if user exists and is active"""
+        result = self.supabase.table("users").select("active").eq("username", username).execute()
+        return result.data and result.data[0]["active"]
 
 
 supabase_service = SupabaseService()

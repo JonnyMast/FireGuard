@@ -12,7 +12,7 @@ USER_TOKEN_EXPIRY = 3600
 
 
 # Client JWT Creation
-def create_client_jwt(client_id: str, client_secret: str) -> str:
+def CreateClientJwt(client_id: str, client_secret: str) -> str:
     """
     Create a JWT for an API client.
     
@@ -34,7 +34,7 @@ def create_client_jwt(client_id: str, client_secret: str) -> str:
 
 
 # User JWT Creation
-def create_user_jwt(username: str) -> str:
+def CreateUserJwt(username: str) -> str:
     """
     Create a JWT for a user.
     
@@ -54,13 +54,13 @@ def create_user_jwt(username: str) -> str:
 
 
 # Shared Verification (with type-specific checks)
-def verify_jwt(token: str, database) -> bool:
+def VerifyJwt(token: str, supabase_service) -> bool:
     """
     Verify a JWT (client or user) and validate against the database.
     
     Args:
         token (str): The JWT to verify
-        database: Supabase client instance
+        supabase_service: Instance of SupabaseService
     
     Returns:
         bool: True if valid, False otherwise
@@ -72,14 +72,10 @@ def verify_jwt(token: str, database) -> bool:
 
         if token_type == "client":
             client_secret = decoded.get("client_secret")
-            result = database.table("api_clients").select("client_secret", "active").eq("client_id", sub).execute()
-            return (result.data and 
-               result.data[0]["client_secret"] == client_secret and
-               result.data[0]["active"])
+            return supabase_service.VerifyClient(sub, client_secret)
         
         elif token_type == "user":
-            result = database.table("users").select("active").eq("username", sub).execute()
-            return result.data and result.data[0]["active"]  # Check if user exists/active
+            return supabase_service.VerifyUser(sub)
         
         else:
             return False

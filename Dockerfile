@@ -1,17 +1,30 @@
-# Use an official base image
-FROM node:14-alpine
+FROM python:3.13-slim
 
-# Set the working directory in the container
+# Environment setup
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Set working directory inside the container
 WORKDIR /app
 
-# Create a simple hello world app
-RUN echo 'console.log("Hello, World!");' > index.js
-RUN echo '{"name":"hello-world","version":"1.0.0","scripts":{"start":"node index.js"}}' > package.json
+# System dependencies
+RUN apt-get update && apt-get install -y curl build-essential
 
-# No need for npm install as we don't have dependencies
+# Install Poetry
+RUN curl -sSL https://install.python-poetry.org | python3 -
+ENV PATH="/root/.local/bin:$PATH"
 
-# Expose port that the app runs on
-EXPOSE 3000
+# Install Python dependencies using Poetry
+COPY pyproject.toml poetry.lock README.md ./
+COPY src ./src
+RUN poetry config virtualenvs.create false \
+ && poetry install --no-interaction --no-ansi
 
-# Define the command to run the application
-CMD ["npm", "start"]
+# Copy the rest of your project files
+COPY . .
+
+# Expose the app port
+EXPOSE 8000
+
+# Start the FastAPI app with uvicorn
+CMD ["uvicorn", "fireguard2.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

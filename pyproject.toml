@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "fireguard2"
+version = "0.1.0"
+description = ""
+authors = ["PeterSkaar <152378626+PeterSkaar@users.noreply.github.com>"]
+readme = "README.md"
+packages = [
+    { include = "fireguard2", from = "src" },
+    { include = "frcm", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.13,<4.0"
+fastapi = { version = ">=0.115.12,<0.116.0", extras = ["standard"] }
+dotenv = ">=0.9.9,<0.10.0"
+supabase = ">=2.15.0,<3.0.0"
+bcrypt = ">=4.3.0,<5.0.0"
+folium = ">=0.19.5,<0.20.0"
+matplotlib = ">=3.10.1,<4.0.0"
+python-decouple = ">=3.8,<4.0"
+pyjwt = "<2.0.0"
+uvicorn = { version = ">=0.34.0,<0.35.0", extras = ["standard"] }
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

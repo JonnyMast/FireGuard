@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  fireguard:
+    build: .
+    container_name: fireguard-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/app/src
+    env_file:
+      - .env
+    working_dir: /app/src
+    command: >
+      uvicorn fireguard2.main:app --host 0.0.0.0 --port 8000 --reload

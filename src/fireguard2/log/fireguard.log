@@ -1,0 +1,518 @@
+2025-03-28 11:29:05,486 - INFO - Login attempt for user: Andrea
+2025-03-28 11:29:05,869 - WARNING - Unexpected error fetching user 'Andrea': {'code': 'PGRST116', 'details': 'The result contains 0 rows', 'hint': None, 'message': 'JSON object requested, multiple (or no) rows returned'}
+2025-03-28 11:30:48,852 - INFO - Login attempt for user: Andrea
+2025-03-28 11:30:49,285 - INFO - No user found with username: Andrea
+2025-03-28 11:38:43,467 - INFO - Login attempt for user: Andrea
+2025-03-28 11:38:43,881 - INFO - No user found with username: Andrea
+2025-03-28 11:40:05,606 - INFO - Login attempt for user: Andrea
+2025-03-28 11:40:05,993 - INFO - No user found with username: Andrea
+2025-03-28 11:49:28,509 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 11:49:33,907 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 11:49:49,142 - INFO - Login attempt for user: Andrea
+2025-03-28 11:49:49,745 - INFO - User found: Andrea
+2025-03-28 11:49:49,951 - INFO - Authenticated map request by user: Andrea
+2025-03-28 11:49:49,957 - INFO - Fetching fire risk for Bergen...
+2025-03-28 11:49:52,681 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 11:49:52,682 - INFO - fire_risk_map.html generated and served successfully.
+2025-03-28 11:52:33,208 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 11:52:38,063 - INFO - JWT token validated for user: Andrea
+2025-03-28 11:52:38,064 - INFO - Authenticated map request by user: Andrea
+2025-03-28 11:52:38,071 - INFO - Fetching fire risk for Bergen...
+2025-03-28 11:52:41,206 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 11:52:41,206 - INFO - fire_risk_map.html generated and served successfully.
+2025-03-28 11:53:12,458 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:18:59,273 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:19:09,056 - INFO - Login attempt for user: Andrea
+2025-03-28 12:19:09,619 - INFO - User found: Andrea
+2025-03-28 12:19:09,809 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T12:59:09.809010+00:00)
+2025-03-28 12:19:09,813 - INFO - JWT token validated for user: Andrea
+2025-03-28 12:19:09,813 - INFO - Authenticated map request by user: Andrea
+2025-03-28 12:19:09,818 - INFO - Fetching fire risk for Bergen...
+2025-03-28 12:19:13,330 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 12:19:13,331 - INFO - fire_risk_map.html generated successfully.
+2025-03-28 12:19:27,940 - INFO - JWT token validated for user: Andrea
+2025-03-28 12:19:27,940 - INFO - Authenticated map request by user: Andrea
+2025-03-28 12:19:27,945 - INFO - Fetching fire risk for Bergen...
+2025-03-28 12:19:30,612 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 12:19:30,612 - INFO - fire_risk_map.html generated successfully.
+2025-03-28 12:19:44,220 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:19:49,430 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:19:56,254 - INFO - JWT token validated for user: Andrea
+2025-03-28 12:19:56,255 - INFO - Authenticated map request by user: Andrea
+2025-03-28 12:19:56,264 - INFO - Fetching fire risk for Bergen...
+2025-03-28 12:19:58,457 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 12:19:58,458 - INFO - fire_risk_map.html generated successfully.
+2025-03-28 12:21:00,771 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:21:06,243 - INFO - JWT token validated for user: Andrea
+2025-03-28 12:21:06,244 - INFO - Authenticated map request by user: Andrea
+2025-03-28 12:21:06,249 - INFO - Fetching fire risk for Bergen...
+2025-03-28 12:21:08,585 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 12:21:08,585 - INFO - fire_risk_map.html generated successfully.
+2025-03-28 12:21:10,221 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:22:28,956 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,049 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,111 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,177 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,244 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,275 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,306 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,330 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,470 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,503 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,538 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,570 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,601 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,628 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,673 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,728 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,762 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,794 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,828 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,865 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,904 - WARNING - Invalid JWT token.
+2025-03-28 12:22:29,944 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,039 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,076 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,109 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,146 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,180 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,213 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,244 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,279 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,313 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,345 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,379 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,411 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,446 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,479 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,515 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,546 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,598 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,634 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,665 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,691 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,776 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,824 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,852 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,882 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,915 - WARNING - Invalid JWT token.
+2025-03-28 12:22:30,949 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,029 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,358 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,416 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,465 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,510 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,550 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,648 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,686 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,742 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,780 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,843 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,886 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,928 - WARNING - Invalid JWT token.
+2025-03-28 12:22:31,973 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,017 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,055 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,095 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,133 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,173 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,215 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,255 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,291 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,330 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,369 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,410 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,466 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,492 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,584 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,631 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,668 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,706 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,730 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,771 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,806 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,890 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,923 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,957 - WARNING - Invalid JWT token.
+2025-03-28 12:22:32,988 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,011 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,046 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,086 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,116 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,146 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,186 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,300 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,382 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,428 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,471 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,512 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,570 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,611 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,642 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,676 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,708 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,738 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,827 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,879 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,917 - WARNING - Invalid JWT token.
+2025-03-28 12:22:33,961 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,005 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,063 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,126 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,166 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,215 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,383 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,439 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,490 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,534 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,571 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,613 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,661 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,702 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,746 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,784 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,821 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,865 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,905 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,949 - WARNING - Invalid JWT token.
+2025-03-28 12:22:34,987 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,035 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,076 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,113 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,157 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,198 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,255 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,290 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,335 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,372 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,418 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,462 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,499 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,538 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,586 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,631 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,669 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,708 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,754 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,795 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,838 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,884 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,931 - WARNING - Invalid JWT token.
+2025-03-28 12:22:35,971 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,014 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,050 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,087 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,125 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,169 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,214 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,252 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,297 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,338 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,379 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,420 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,468 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,505 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,547 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,586 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,628 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,671 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,715 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,753 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,798 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,836 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,877 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,919 - WARNING - Invalid JWT token.
+2025-03-28 12:22:36,965 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,004 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,049 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,087 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,133 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,177 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,220 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,258 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,298 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,339 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,383 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,421 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,467 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,504 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,542 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,579 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,618 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,657 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,703 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,749 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,787 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,884 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,935 - WARNING - Invalid JWT token.
+2025-03-28 12:22:37,984 - WARNING - Invalid JWT token.
+2025-03-28 12:22:38,127 - WARNING - Invalid JWT token.
+2025-03-28 12:22:38,185 - WARNING - Invalid JWT token.
+2025-03-28 12:22:38,260 - WARNING - Invalid JWT token.
+2025-03-28 12:22:38,310 - WARNING - Invalid JWT token.
+2025-03-28 12:23:28,386 - INFO - Login attempt for user: Andrea
+2025-03-28 12:23:29,435 - INFO - User found: Andrea
+2025-03-28 12:23:29,649 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T13:03:29.648015+00:00)
+2025-03-28 12:23:29,658 - INFO - JWT token validated for user: Andrea
+2025-03-28 12:23:29,659 - INFO - Authenticated map request by user: Andrea
+2025-03-28 12:23:29,693 - INFO - Fetching fire risk for Bergen...
+2025-03-28 12:23:32,236 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 12:23:32,237 - INFO - fire_risk_map.html generated successfully.
+2025-03-28 12:24:42,760 - INFO - Login attempt for user: Andrea
+2025-03-28 12:24:42,928 - INFO - User found: Andrea
+2025-03-28 12:24:43,133 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T13:04:43.133606+00:00)
+2025-03-28 12:24:43,140 - INFO - JWT token validated for user: Andrea
+2025-03-28 12:24:43,141 - INFO - Authenticated map request by user: Andrea
+2025-03-28 12:24:43,145 - INFO - Fetching fire risk for Bergen...
+2025-03-28 12:24:45,570 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 12:24:45,570 - INFO - fire_risk_map.html generated successfully.
+2025-03-28 12:28:17,284 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:28:23,167 - INFO - JWT token validated for user: Andrea
+2025-03-28 12:28:23,168 - INFO - Authenticated map request by user: Andrea
+2025-03-28 12:28:23,176 - INFO - Fetching fire risk for Bergen...
+2025-03-28 12:28:25,411 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 12:28:25,411 - INFO - fire_risk_map.html generated successfully.
+2025-03-28 12:28:39,049 - INFO - Login attempt for user: Andrea
+2025-03-28 12:28:39,496 - INFO - User found: Andrea
+2025-03-28 12:28:39,711 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T13:08:39.711332+00:00)
+2025-03-28 12:28:39,720 - INFO - JWT token validated for user: Andrea
+2025-03-28 12:28:39,720 - INFO - Authenticated map request by user: Andrea
+2025-03-28 12:28:39,727 - INFO - Fetching fire risk for Bergen...
+2025-03-28 12:28:41,898 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 12:28:41,899 - INFO - fire_risk_map.html generated successfully.
+2025-03-28 12:30:31,377 - INFO - Login attempt for user: Andrea
+2025-03-28 12:30:31,701 - INFO - User found: Andrea
+2025-03-28 12:30:31,912 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T13:10:31.910638+00:00)
+2025-03-28 12:30:31,920 - INFO - JWT token validated for user: Andrea
+2025-03-28 12:30:31,921 - INFO - Authenticated map request by user: Andrea
+2025-03-28 12:30:31,938 - INFO - Fetching fire risk for Bergen...
+2025-03-28 12:30:35,823 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 12:30:35,823 - INFO - fire_risk_map.html generated successfully.
+2025-03-28 12:36:56,495 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:36:59,264 - INFO - JWT token validated for user: Andrea
+2025-03-28 12:36:59,264 - INFO - Authenticated map request by user: Andrea
+2025-03-28 12:36:59,272 - INFO - Fetching fire risk for Bergen...
+2025-03-28 12:37:01,703 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 12:37:01,704 - INFO - fire_risk_map.html generated successfully.
+2025-03-28 12:37:15,029 - INFO - Login attempt for user: Andrea
+2025-03-28 12:37:15,644 - INFO - User found: Andrea
+2025-03-28 12:37:15,851 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T13:17:15.851641+00:00)
+2025-03-28 12:37:15,857 - INFO - JWT token validated for user: Andrea
+2025-03-28 12:37:15,858 - INFO - Authenticated map request by user: Andrea
+2025-03-28 12:37:15,865 - INFO - Fetching fire risk for Bergen...
+2025-03-28 12:37:18,086 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 12:37:18,086 - INFO - fire_risk_map.html generated successfully.
+2025-03-28 12:39:11,834 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:39:19,573 - INFO - Login attempt for user: Andrea
+2025-03-28 12:39:20,118 - INFO - User found: Andrea
+2025-03-28 12:39:20,306 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T13:19:20.306411+00:00)
+2025-03-28 12:39:20,326 - INFO - JWT token validated for user: Andrea
+2025-03-28 12:39:20,327 - INFO - Authenticated map request by user: Andrea
+2025-03-28 12:39:20,337 - INFO - Fetching fire risk for Bergen...
+2025-03-28 12:39:22,602 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 12:39:22,603 - INFO - fire_risk_map.html generated successfully.
+2025-03-28 12:44:00,747 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:44:06,527 - INFO - Login attempt for user: Andrea
+2025-03-28 12:44:07,162 - INFO - User found: Andrea
+2025-03-28 12:44:07,363 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T13:24:07.363436+00:00)
+2025-03-28 12:45:41,359 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:46:01,851 - INFO - Login attempt for user: Andrea
+2025-03-28 12:46:02,453 - INFO - User found: Andrea
+2025-03-28 12:46:02,658 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T13:26:02.658470+00:00)
+2025-03-28 12:46:02,678 - INFO - Serving fire_risk_map.html wrapper page.
+2025-03-28 12:51:30,562 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:51:40,572 - INFO - Login attempt for user: Andrea
+2025-03-28 12:51:41,003 - INFO - User found: Andrea
+2025-03-28 12:51:41,204 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T13:31:41.204197+00:00)
+2025-03-28 12:51:41,228 - INFO - Serving fire_risk_map.html wrapper page.
+2025-03-28 12:51:57,887 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:53:14,469 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 12:54:46,375 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:10:40,576 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:11:03,421 - INFO - Login attempt for user: Andrea
+2025-03-28 13:11:03,996 - INFO - User found: Andrea
+2025-03-28 13:11:04,189 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T13:51:04.188865+00:00)
+2025-03-28 13:13:12,339 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:13:15,016 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:13:22,634 - INFO - Login attempt for user: Andrea
+2025-03-28 13:13:23,275 - INFO - User found: Andrea
+2025-03-28 13:13:23,498 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T13:53:23.498026+00:00)
+2025-03-28 13:13:23,526 - INFO - Serving fire_risk_map.html wrapper page.
+2025-03-28 13:16:22,136 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:19:20,610 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:19:52,087 - INFO - Login attempt for user: Andrea
+2025-03-28 13:19:52,506 - INFO - User found: Andrea
+2025-03-28 13:19:52,699 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T13:59:52.699394+00:00)
+2025-03-28 13:28:36,681 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:28:39,194 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:28:58,571 - INFO - Login attempt for user: Andrea
+2025-03-28 13:28:59,282 - INFO - User found: Andrea
+2025-03-28 13:28:59,502 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T14:08:59.502106+00:00)
+2025-03-28 13:33:47,238 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:33:59,761 - INFO - Login attempt for user: Andrea
+2025-03-28 13:34:00,208 - INFO - User found: Andrea
+2025-03-28 13:34:00,419 - INFO - Created JWT token for: Andrea (expires at 2025-03-28T14:14:00.419644+00:00)
+2025-03-28 13:41:38,201 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:54:34,504 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:54:36,502 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:54:38,291 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:56:06,897 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:56:11,679 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:57:18,005 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 13:58:21,219 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 14:41:11,467 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 14:45:12,600 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 14:45:14,260 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 14:53:16,772 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 14:53:18,315 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 14:55:04,626 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 14:55:06,130 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 14:56:19,574 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 14:58:31,710 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 14:59:45,818 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:00:57,985 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:01:28,309 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:02:46,994 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:04:17,316 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:04:36,988 - INFO - User found: Andrea
+2025-03-28 15:05:49,031 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:05:57,712 - INFO - User found: Andrea
+2025-03-28 15:06:20,540 - INFO - User found: Andrea
+2025-03-28 15:07:06,332 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:07:17,434 - INFO - User found: Andrea
+2025-03-28 15:07:24,775 - INFO - User found: Andrea
+2025-03-28 15:09:12,447 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:09:18,976 - INFO - User found: Andrea
+2025-03-28 15:09:40,743 - INFO - User found: Andrea
+2025-03-28 15:14:12,681 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:17:23,274 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:17:24,812 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:17:31,850 - INFO - Login attempt for user: Andrea
+2025-03-28 15:17:32,420 - INFO - User found: Andrea
+2025-03-28 15:17:32,626 - INFO - Authenticated map request by user: Andrea
+2025-03-28 15:17:32,626 - ERROR - Map generation or delivery failed: 'Logger' object has no attribute 'basicConfig'
+2025-03-28 15:17:44,279 - INFO - Login attempt for user: Andrea
+2025-03-28 15:17:44,370 - INFO - User found: Andrea
+2025-03-28 15:17:44,564 - INFO - Authenticated map request by user: Andrea
+2025-03-28 15:17:44,564 - ERROR - Map generation or delivery failed: 'Logger' object has no attribute 'basicConfig'
+2025-03-28 15:18:46,257 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:18:55,086 - INFO - User found: Andrea
+2025-03-28 15:18:55,286 - INFO - Authenticated map request by user: Andrea
+2025-03-28 15:18:55,286 - ERROR - Map generation or delivery failed: 'Logger' object has no attribute 'basicConfig'
+2025-03-28 15:19:27,501 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:19:34,148 - INFO - User found: Andrea
+2025-03-28 15:19:34,350 - INFO - Authenticated map request by user: Andrea
+2025-03-28 15:19:34,350 - ERROR - Map generation or delivery failed: 'Logger' object has no attribute 'basicConfig'
+2025-03-28 15:19:57,781 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:20:02,435 - INFO - User found: Andrea
+2025-03-28 15:20:02,636 - INFO - Authenticated map request by user: Andrea
+2025-03-28 15:20:16,911 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:20:24,117 - INFO - User found: Andrea
+2025-03-28 15:20:30,845 - INFO - User found: Andrea
+2025-03-28 15:21:36,571 - INFO - User found: Andrea
+2025-03-28 15:21:42,524 - INFO - No user found with username: ads
+2025-03-28 15:21:53,213 - INFO - User found: Andrea
+2025-03-28 15:22:21,739 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:22:23,274 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:22:31,644 - INFO - User found: Andrea
+2025-03-28 15:22:31,847 - INFO - 🗺️  Authenticated fire risk map request from: Andrea
+2025-03-28 15:24:48,835 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:24:57,727 - INFO - User found: Andrea
+2025-03-28 15:24:57,922 - INFO - 🗺️  Authenticated fire risk map request from: Andrea
+2025-03-28 15:26:23,996 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:26:25,535 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:26:36,422 - INFO - User found: Andrea
+2025-03-28 15:26:36,624 - INFO - 🗺️  Authenticated fire risk map request from: Andrea
+2025-03-28 15:26:36,633 - INFO - Fetching fire risk for Bergen...
+2025-03-28 15:26:38,924 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 15:27:25,181 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:27:26,759 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:27:34,762 - INFO - Login attempt for user: Andrea
+2025-03-28 15:27:35,072 - INFO - User found: Andrea
+2025-03-28 15:27:35,357 - INFO - Fetching fire risk for Bergen...
+2025-03-28 15:27:37,790 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 15:28:35,017 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:28:40,084 - INFO - Login attempt for user: Andrea
+2025-03-28 15:28:40,558 - INFO - User found: Andrea
+2025-03-28 15:28:40,761 - INFO - Authenticated fire risk map request from: Andrea
+2025-03-28 15:28:40,766 - INFO - Fetching fire risk for Bergen...
+2025-03-28 15:28:43,141 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 15:29:16,346 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:29:23,106 - INFO - Login attempt for user: Andrea
+2025-03-28 15:29:23,470 - INFO - User found: Andrea
+2025-03-28 15:29:23,673 - INFO - Authenticated fire risk map request from: Andrea
+2025-03-28 15:29:23,678 - INFO - Fetching fire risk for Bergen...
+2025-03-28 15:29:26,352 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 15:34:03,885 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:34:11,540 - INFO - Login attempt for user: Andrea
+2025-03-28 15:34:11,930 - INFO - User found: Andrea
+2025-03-28 15:35:27,831 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:35:37,833 - INFO - Login attempt for user: Andrea
+2025-03-28 15:35:38,196 - INFO - User found: Andrea
+2025-03-28 15:35:38,391 - INFO - Authenticated fire risk map request from: Andrea
+2025-03-28 15:35:38,396 - INFO - Fetching fire risk for Bergen...
+2025-03-28 15:35:41,075 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 15:36:07,516 - INFO - Login attempt for user: Andrea
+2025-03-28 15:36:07,628 - INFO - User found: Andrea
+2025-03-28 15:36:07,827 - INFO - Authenticated fire risk map request from: Andrea
+2025-03-28 15:36:07,831 - INFO - Fetching fire risk for Bergen...
+2025-03-28 15:36:10,140 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 15:36:54,155 - INFO - Login attempt for user: Andrea
+2025-03-28 15:36:54,278 - INFO - User found: Andrea
+2025-03-28 15:36:54,480 - INFO - Authenticated fire risk map request from: Andrea
+2025-03-28 15:36:54,487 - INFO - Fetching fire risk for Bergen...
+2025-03-28 15:36:57,222 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 15:44:31,565 - INFO - Login attempt for user: Andrea
+2025-03-28 15:44:31,919 - INFO - User found: Andrea
+2025-03-28 15:44:32,115 - INFO - Authenticated fire risk map request from: Andrea
+2025-03-28 15:44:32,118 - INFO - Fetching fire risk for Bergen...
+2025-03-28 15:44:34,562 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 15:46:30,440 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:46:38,879 - INFO - Login attempt for user: Andrea
+2025-03-28 15:46:39,398 - INFO - User found: Andrea
+2025-03-28 15:46:39,596 - INFO - Authenticated fire risk map request from: Andrea
+2025-03-28 15:46:39,601 - INFO - Fetching fire risk for Bergen...
+2025-03-28 15:46:42,373 - INFO - Fetching fire risk for Oslo...
+2025-03-28 15:46:45,488 - INFO - Fetching fire risk for Trondheim...
+2025-03-28 15:46:48,751 - INFO - Fetching fire risk for F�rde...
+2025-03-28 15:46:51,601 - INFO - Fetching fire risk for Stongfjorden...
+2025-03-28 15:46:54,833 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 15:47:30,248 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:47:49,589 - INFO - Login attempt for user: Andrea
+2025-03-28 15:47:49,952 - INFO - User found: Andrea
+2025-03-28 15:47:50,149 - INFO - Authenticated fire risk map request from: Andrea
+2025-03-28 15:47:50,153 - INFO - Fetching fire risk for Bergen...
+2025-03-28 15:47:53,296 - INFO - Fetching fire risk for Oslo...
+2025-03-28 15:47:56,895 - INFO - Fetching fire risk for Trondheim...
+2025-03-28 15:48:00,043 - INFO - Fetching fire risk for F�rde...
+2025-03-28 15:48:02,654 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-03-28 15:51:36,221 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-03-28 15:51:41,418 - INFO - [LOGIN] Attempt from user: Andrea
+2025-03-28 15:51:41,786 - INFO - User found: Andrea
+2025-03-28 15:51:41,979 - INFO - [LOGIN] Success for user: Andrea
+2025-03-28 15:51:41,982 - INFO - Authenticated fire risk map request from: Andrea
+2025-03-28 15:51:41,986 - INFO - Fetching fire risk for Bergen...
+2025-03-28 15:51:44,380 - INFO - Fetching fire risk for Oslo...
+2025-03-28 15:51:47,341 - INFO - Fetching fire risk for Trondheim...
+2025-03-28 15:51:50,542 - INFO - Fetching fire risk for F�rde...
+2025-03-28 15:51:52,808 - INFO - Map saved to C:\Users\Peter\Documents\GitHub\FireGuard2\src\fireguard2\services\..\static\fire_risk_map.html
+2025-04-03 06:51:07,293 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-04-03 06:53:28,867 - INFO - [LOGIN] Attempt from user: Andrea
+2025-04-03 06:53:29,352 - INFO - User found: Andrea
+2025-04-03 06:53:29,534 - INFO - [LOGIN] Success for user: Andrea
+2025-04-03 06:53:29,542 - INFO - Authenticated fire risk map request from: Andrea
+2025-04-03 06:53:29,553 - INFO - Fetching fire risk for Bergen...
+2025-04-03 06:53:31,952 - INFO - Fetching fire risk for Oslo...
+2025-04-03 06:53:35,058 - INFO - Fetching fire risk for Trondheim...
+2025-04-03 06:53:38,305 - INFO - Fetching fire risk for Førde...
+2025-04-03 06:53:41,328 - INFO - Map saved to /app/src/fireguard2/services/../static/fire_risk_map.html
+2025-04-03 07:37:07,627 - INFO - Connected to Supabase at: https://ojxccsblnolnsfogifif.supabase.co/
+2025-04-03 07:37:19,406 - INFO - [LOGIN] Attempt from user: Andrea
+2025-04-03 07:37:19,681 - INFO - User found: Andrea
+2025-04-03 07:37:19,863 - INFO - [LOGIN] Success for user: Andrea
+2025-04-03 07:37:19,885 - INFO - Authenticated fire risk map request from: Andrea
+2025-04-03 07:37:19,898 - INFO - Fetching fire risk for Bergen...
+2025-04-03 07:37:22,877 - INFO - Fetching fire risk for Oslo...
+2025-04-03 07:37:26,049 - INFO - Fetching fire risk for Trondheim...
+2025-04-03 07:37:29,384 - INFO - Fetching fire risk for Førde...
+2025-04-03 07:37:32,514 - INFO - Map saved to /app/src/fireguard2/services/../static/fire_risk_map.html

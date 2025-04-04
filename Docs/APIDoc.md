@@ -10,14 +10,14 @@ The Authentication API provides endpoints for obtaining JWT tokens for client an
 ## Endpoints
 
 ### Client Token Endpoint
-`POST /auth/token/client`
+`POST /gen/token/client`
 
-Authenticates an API client and returns a JWT token for accessing protected endpoints.
+Authenticates an API client and rgenerates a JWT token for accessing protected endpoints.
 
 ### User Token Endpoint
-`POST /auth/token/user`
+`POST /gen/token/user`
 
-Authenticates a user and returns a JWT token for accessing user-specific endpoints.
+Authenticates a user and rgenerates a JWT token for accessing user-specific endpoints.
 
 ## Request Bodies
 

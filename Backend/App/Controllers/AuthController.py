@@ -1,4 +1,5 @@
 from App.Helpers.JwtUtils import CreateClientJwt, CreateUserJwt
+from App.Helpers.PasswordAuth import password_auth
 from App.Services.SupabaseService import supabase_service
 from fastapi import HTTPException
 
@@ -13,13 +14,22 @@ class AuthController:
     
 
     def GenerateUserToken(self, username: str, password: str) -> str:
-        """Business logic for user token generation"""
-        #Password handling imported from Helpers
-        password_handled = False
-        if password_handled:
-            return CreateUserJwt()
+        """Business logic for user token generation
+        Get user from db
+        Check password
+        Create JWT
+        """
+        user = supabase_service.get_user(username)
+        if not user:
+            return None
         
-        return None
+        db_pass = user.data[0]["password"]
+
+        pass_match = password_auth.CheckPass(password, db_pass)
+        if not pass_match:
+            return None
+        
+        return CreateUserJwt(username)
         
 
 

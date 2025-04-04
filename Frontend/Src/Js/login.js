@@ -1,3 +1,7 @@
+import { BASE_URL } from '.config.js'
+
+console.log("hello");
+
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     

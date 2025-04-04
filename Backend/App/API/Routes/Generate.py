@@ -16,14 +16,14 @@ class UserCredentials(BaseModel):
 
 # Client token endpoint
 @router.post("/jwt/client")
-async def get_client_token(credentials: ClientCredentials):
+async def generate_client_token(credentials: ClientCredentials):
     # Call controller to handle business logic
     token = auth_controller.GenerateClientToken(credentials.client_id, credentials.client_secret)
     return {"access_token": token, "token_type": "bearer"}
 
 
 @router.post("/jwt/user")
-async def get_user_token(credentials: UserCredentials):
+async def generate_user_token(credentials: UserCredentials):
     # Call controller to handle business logic
     token = auth_controller.GenerateUserToken(credentials.username, credentials.password)
     if not token:

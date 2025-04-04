@@ -14,8 +14,10 @@ fastapi = "^0.115.12"
 uvicorn = "^0.34.0"
 python-dotenv = "^1.1.0"
 pyjwt = "^2.10.1"
-pytest = "^8.3.5"
+pytest = ">=7.4.4, <8.3.5"
 bcrypt = "^4.3.0"
+geopy = "^2.4.1"
+dynamic-frcm = "^1.0.1"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]

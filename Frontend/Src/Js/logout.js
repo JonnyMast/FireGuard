@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 } else {
                     // Fallback if Auth module is not available
                     localStorage.removeItem('authToken');
-                    window.location.href = '../Views/index.html';
+                    window.location.href = '../Views/login.html';
                 }
             }
         });

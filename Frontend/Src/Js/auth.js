@@ -43,7 +43,7 @@ const Auth = (function() {
      * Redirect to login page
      */
     function redirectToLogin() {
-        window.location.href = '../Views/index.html';
+        window.location.href = '../Views/login.html';
     }
 
     // Public API

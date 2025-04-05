@@ -43,14 +43,14 @@ class MockSupabaseService:
     def __init__(self, mock_db=None):
         self.supabase = mock_db or MockDatabase()
     
-    def VerifyClient(self, client_id, client_secret):
+    def verify_client(self, client_id, client_secret):
         """Verify client credentials against database"""
         client = self.supabase.api_clients.get(client_id)
         if not client:
             return False
         return client["client_secret"] == client_secret and client["active"]
                 
-    def VerifyUser(self, username):
+    def verify_user(self, username):
         """Verify if user exists and is active"""
         user = self.supabase.users.get(username)
         if not user:

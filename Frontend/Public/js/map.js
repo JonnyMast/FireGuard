@@ -96,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
             showLoading();
             
             const token = localStorage.getItem('jwt');
-            console.log('Using JWT:', token); // Debug the token
             
             if (!token) {
                 throw new Error('Authentication token not found. Please log in again.');

@@ -72,10 +72,10 @@ def VerifyJwt(token: str, supabase_service) -> bool:
 
         if token_type == "client":
             client_secret = decoded.get("client_secret")
-            return supabase_service.VerifyClient(sub, client_secret)
+            return supabase_service.verify_client(sub, client_secret)
         
         elif token_type == "user":
-            return supabase_service.VerifyUser(sub)
+            return supabase_service.verify_user(sub)
         
         else:
             return False

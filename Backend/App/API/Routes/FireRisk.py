@@ -29,13 +29,13 @@ async def verify_token(credentials: HTTPBearer = Security(security)):
     return True
 
 @router.get("/firerisk/city")
-async def get_prediction_from_name(location: LocationModel, authenticated: bool = Depends(verify_token)):
+async def get_prediction_from_name(city: str, days: int, authenticated: bool = Depends(verify_token)):
     # Call controller to handle business logic
-    firerisk = risk_controller.PredictOnCityName(location.city, location.days)
+    firerisk = risk_controller.PredictOnCityName(city, days)
     
     return firerisk
 
 @router.get("/firerisk/coordinates")
-async def get_prediction_from_coordinate(location: CoordinateModel, authenticated: bool = Depends(verify_token)):
+async def get_prediction_from_coordinate(latitude: float, longitude: float, days: int, authenticated: bool = Depends(verify_token)):
     # Implement prediction logic here
     return False

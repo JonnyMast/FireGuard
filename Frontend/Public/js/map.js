@@ -1,4 +1,5 @@
 import { API_URL } from './config.js';
+import { createFireRiskPlot, updateFireRiskPlot, clearFireRiskPlot } from './fireriskplot.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
@@ -13,8 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
     let map;
     let markers = [];
     
+    // Fire risk visualization data
+    let currentFireRiskPlot = null;
+    let timeSlider = null;
+    let timeControls = null;
+    let timeLabel = null;
+    
     // State variables
-    let currentLocation = '';
+    let searchedLocation = '';
+    let userLocation = null;  // New variable to store user's actual geographical position
     let historyDays = 1; // Default value matching the HTML
     
     // Initialize the map with Leaflet
@@ -23,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Default location: Oslo, Norway
             const defaultLocation = [59.9139, 10.7522]; // Oslo coordinates
             
-            // Create the map with Oslo as the default location
+            // Create the map with Oslo as the default location (but no marker)
             map = L.map('map-container').setView(defaultLocation, 13);
             
             // Add the base map layer
@@ -31,18 +39,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
             
-            // Add a marker for the default location
-            const defaultMarker = L.marker(defaultLocation)
-                .addTo(map)
-                .bindPopup('Default location: Oslo, Norway');
-                
             // If user allows geolocation, update the map to their location
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(position => {
                     const { latitude, longitude } = position.coords;
-                    
-                    // Remove the default marker
-                    map.removeLayer(defaultMarker);
+                    userLocation = { latitude, longitude }; // Store user's actual location
                     
                     // Update view to user's location
                     map.setView([latitude, longitude], 13);
@@ -54,16 +55,96 @@ document.addEventListener('DOMContentLoaded', function() {
                         .openPopup();
                 }, error => {
                     console.log('Geolocation error:', error);
-                    // Keep the default marker open if geolocation fails
-                    defaultMarker.openPopup();
+                    // No marker displayed if permission denied
                 });
-            } else {
-                // Browser doesn't support geolocation, keep Oslo as default
-                defaultMarker.openPopup();
             }
+            
+            // Create container for the time slider
+            createTimeSliderControls();
+            
         } catch (e) {
             console.error('Error initializing map:', e);
             displayError('Failed to initialize the map. Please refresh the page.');
+        }
+    }
+    
+    // Create time slider controls
+    function createTimeSliderControls() {
+        // Create a custom control for the time slider
+        timeControls = L.control({ position: 'topright' });
+        
+        timeControls.onAdd = function(map) {
+            const container = L.DomUtil.create('div', 'time-slider-container');
+            container.style.backgroundColor = 'white';
+            container.style.padding = '10px';
+            container.style.borderRadius = '5px';
+            container.style.boxShadow = '0 1px 5px rgba(0,0,0,0.4)';
+            container.style.width = '300px';
+            container.style.display = 'none'; // Hide initially until we have data
+            
+            // Create time display label
+            timeLabel = L.DomUtil.create('div', 'time-label', container);
+            timeLabel.innerHTML = 'No data available';
+            timeLabel.style.marginBottom = '5px';
+            timeLabel.style.textAlign = 'center';
+            
+            // Create slider element
+            timeSlider = L.DomUtil.create('input', 'time-slider', container);
+            timeSlider.type = 'range';
+            timeSlider.min = '0';
+            timeSlider.max = '0';
+            timeSlider.value = '0';
+            timeSlider.style.width = '100%';
+            
+            // Prevent map interaction when using the slider
+            L.DomEvent.disableClickPropagation(container);
+            L.DomEvent.disableScrollPropagation(container);
+            
+            return container;
+        };
+        
+        timeControls.addTo(map);
+    }
+    
+    // Update time slider with new fire risk data
+    function updateTimeSlider(fireRiskData) {
+        const container = timeControls.getContainer();
+        
+        if (fireRiskData && fireRiskData.firerisks && fireRiskData.firerisks.length > 0) {
+            // Show the container
+            container.style.display = 'block';
+            
+            // Update slider max value
+            timeSlider.max = fireRiskData.firerisks.length - 1;
+            timeSlider.min = 0;
+            timeSlider.value = 0;
+            
+            // Update the label
+            updateTimeLabel(fireRiskData, 0);
+            
+            // Add event listener
+            timeSlider.addEventListener('input', function() {
+                const index = parseInt(this.value);
+                updateTimeLabel(fireRiskData, index);
+                
+                // Update the visualization
+                if (currentFireRiskPlot) {
+                    updateFireRiskPlot(currentFireRiskPlot, index);
+                }
+            });
+        } else {
+            // Hide the container if no data
+            container.style.display = 'none';
+        }
+    }
+    
+    // Update the time label with timestamp information
+    function updateTimeLabel(data, index) {
+        if (data && data.firerisks && data.firerisks[index]) {
+            const timestamp = new Date(data.firerisks[index].timestamp);
+            timeLabel.innerHTML = `Time: ${timestamp.toLocaleString()}`;
+        } else {
+            timeLabel.innerHTML = 'No data available';
         }
     }
     
@@ -74,12 +155,12 @@ document.addEventListener('DOMContentLoaded', function() {
             historyDays = this.value;
             daysValue.textContent = historyDays;
             // Optionally refresh data when slider changes
-            // fetchFireRiskData();
+            // if (searchedLocation) fetchFireRiskData();
         });
         
         // Search button event listener
         searchBtn.addEventListener('click', function() {
-            currentLocation = searchInput.value;
+            searchedLocation = searchInput.value; // Use searchedLocation instead of currentLocation
             fetchFireRiskData();
         });
         
@@ -101,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 throw new Error('Authentication token not found. Please log in again.');
             }
             
-            const apiUrl = `${API_URL}/api/fireguard/firerisk/city?city=${encodeURIComponent(currentLocation)}&days=${historyDays}`;
+            const apiUrl = `${API_URL}/api/fireguard/firerisk/city?city=${encodeURIComponent(searchedLocation)}&days=${historyDays}`;
             const response = await fetch(apiUrl, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -133,15 +214,31 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Display fire risk data
     function displayFireRiskData(data) {
-        // Implementation will depend on your data structure
         console.log('Fire risk data:', data);
-        // TODO: Display data on the map or in a chart
+        
+        if (data && data.location && data.firerisks && data.firerisks.length > 0) {
+            // Clear any existing fire risk plots
+            if (currentFireRiskPlot) {
+                clearFireRiskPlot(map);
+            }
+            
+            // Center the map on the location
+            map.setView([data.location.latitude, data.location.longitude], 13);
+            
+            // Create fire risk visualization
+            currentFireRiskPlot = createFireRiskPlot(map, data);
+            
+            // Update the time slider
+            updateTimeSlider(data);
+        } else {
+            displayError('No fire risk data available for this location');
+        }
     }
     
     // Show loading indicator
     function showLoading() {
         // TODO: Implement loading indicator
-        console.log('Loading...');
+        console.log('Loading fire-risk data...');
     }
     
     // Hide loading indicator

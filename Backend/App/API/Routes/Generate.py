@@ -19,7 +19,7 @@ class UserCredentials(BaseModel):
 async def generate_client_token(credentials: ClientCredentials):
     # Call controller to handle business logic
     token = auth_controller.GenerateClientToken(credentials.client_id, credentials.client_secret)
-    return {"access_token": token, "token_type": "bearer"}
+    return {"token": token, "token_type": "bearer"}
 
 
 @router.post("/jwt/user")
@@ -31,4 +31,4 @@ async def generate_user_token(credentials: UserCredentials):
             status_code=401,
             detail="Invalid authentication credentials"
         )
-    return {"access_token": token, "token_type": "bearer"}
+    return {"token": token, "token_type": "bearer"}

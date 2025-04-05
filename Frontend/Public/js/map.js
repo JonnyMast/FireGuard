@@ -1,3 +1,5 @@
+import { API_URL } from './config.js';
+
 document.addEventListener('DOMContentLoaded', function() {
     // DOM Elements
     const logoutBtn = document.getElementById('logout-btn');
@@ -13,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // State variables
     let currentLocation = '';
-    let historyDays = 7;
+    let historyDays = 1; // Default value matching the HTML
     
     // Initialize the map with Leaflet
     function initMap() {
@@ -65,17 +67,46 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // The rest of your code remains unchanged
+    // Setup event listeners
+    function setupEventListeners() {
+        // Slider event listener
+        daysSlider.addEventListener('input', function() {
+            historyDays = this.value;
+            daysValue.textContent = historyDays;
+            // Optionally refresh data when slider changes
+            // fetchFireRiskData();
+        });
+        
+        // Search button event listener
+        searchBtn.addEventListener('click', function() {
+            currentLocation = searchInput.value;
+            fetchFireRiskData();
+        });
+        
+        // Logout button event listener
+        logoutBtn.addEventListener('click', function() {
+            localStorage.removeItem('jwt');
+            window.location.href = 'index.html'; // Redirect to front page after logout
+        });
+    }
+    
     // Fetch fire risk data from API
     async function fetchFireRiskData() {
         try {
             showLoading();
             
-            // Make API call (adjust URL to match your backend)
-            const apiUrl = `/api/fire-risk?location=${encodeURIComponent(currentLocation)}&days=${historyDays}`;
+            const token = localStorage.getItem('jwt');
+            console.log('Using JWT:', token); // Debug the token
+            
+            if (!token) {
+                throw new Error('Authentication token not found. Please log in again.');
+            }
+            
+            const apiUrl = `${API_URL}/api/fireguard/firerisk/city?city=${encodeURIComponent(currentLocation)}&days=${historyDays}`;
             const response = await fetch(apiUrl, {
                 headers: {
-                    'Authorization': `Bearer ${Auth.getToken()}`
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
                 }
             });
             
@@ -88,15 +119,54 @@ document.addEventListener('DOMContentLoaded', function() {
             
         } catch (error) {
             console.error('Error fetching fire risk data:', error);
-            displayError('Failed to load fire risk data. Please try again.');
+            
+            if (error.message.includes('token not found')) {
+                // Special handling for missing token
+                localStorage.removeItem('jwt'); // Clear any invalid token
+                window.location.href = 'login.html'; // Redirect to login
+            } else {
+                displayError('Failed to load fire risk data. Please try again.');
+            }
         } finally {
             hideLoading();
         }
     }
     
+    // Display fire risk data
+    function displayFireRiskData(data) {
+        // Implementation will depend on your data structure
+        console.log('Fire risk data:', data);
+        // TODO: Display data on the map or in a chart
+    }
+    
+    // Show loading indicator
+    function showLoading() {
+        // TODO: Implement loading indicator
+        console.log('Loading...');
+    }
+    
+    // Hide loading indicator
+    function hideLoading() {
+        // TODO: Hide loading indicator
+        console.log('Loading complete');
+    }
+    
+    // Display error message
+    function displayError(message) {
+        // Implementation for displaying errors to the user
+        console.error(message);
+        // TODO: Show error message in the UI
+    }
+    
     // Initialize the application
     function initApp() {
-       if (!Auth.isAuthenticated()) return;
+        // Check for JWT directly in localStorage
+        const jwt = localStorage.getItem('jwt');
+        if (!jwt) {
+            // Redirect to front page if no JWT found
+            window.location.href = 'login.html';
+            return;
+        }
         
         // First load CSS for Leaflet
         const leafletCSS = document.createElement('link');

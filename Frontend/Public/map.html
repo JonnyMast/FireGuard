@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FireGuard - Fire Risk Map</title>
-    <link rel="stylesheet" href="../Css/map.css">
+    <title>Map - FireGuard</title>
+    <link rel="stylesheet" href="./css/map.css">
 </head>
 <body>
     <header>
@@ -24,13 +24,13 @@
             </div>
             
             <div class="slider-section">
-                <label for="days-slider">Historical data: <span id="days-value">7</span> days</label>
-                <input type="range" id="days-slider" min="1" max="14" value="7">
+                <label for="days-slider">Historical data: <span id="days-value">1</span> days</label>
+                <input type="range" id="days-slider" min="1" max="14" value="1">
             </div>
         </div>
     </main>
 
-    <script src="../Js/map.js"></script>
-    <script src="../Js/logout.js"></script>
+    <script type="module" src="./js/map.js"></script>
+    <script type="module" src="./js/logout.js"></script>
 </body>
 </html>

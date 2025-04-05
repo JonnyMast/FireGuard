@@ -31,7 +31,7 @@ Authenticates a user and rgenerates a JWT token for accessing user-specific endp
 
 ## Responses
 Successful authentication returns a JSON object with:
-- `access_token`: The JWT token
+- `token`: The JWT token
 - `token_type`: The token type (always "bearer")
 
 ## How to Use

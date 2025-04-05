@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Map initialization
     let map;
-    let markers = [];
     
     // Fire risk visualization data
     let currentFireRiskPlot = null;
@@ -25,6 +24,12 @@ document.addEventListener('DOMContentLoaded', function() {
     let userLocation = null;  // New variable to store user's actual geographical position
     let historyDays = 1; // Default value matching the HTML
     
+    // Fire risk visualization data
+    let fireRiskPlots = {}; // Store multiple plots by city name
+    let currentActiveCity = null; // Track which city is currently active for time slider
+    let markers = [];
+
+
     // Initialize the map with Leaflet
     function initMap() {
         try {
@@ -106,35 +111,72 @@ document.addEventListener('DOMContentLoaded', function() {
         timeControls.addTo(map);
     }
     
-    // Update time slider with new fire risk data
+    // Replace the updateTimeSlider function
     function updateTimeSlider(fireRiskData) {
         const container = timeControls.getContainer();
         
-        if (fireRiskData && fireRiskData.firerisks && fireRiskData.firerisks.length > 0) {
+        // Get the maximum range across all available plots
+        let maxTimepoints = 0;
+        Object.values(fireRiskPlots).forEach(plot => {
+            if (plot.data && plot.data.firerisks) {
+                maxTimepoints = Math.max(maxTimepoints, plot.data.firerisks.length);
+            }
+        });
+        
+        if (maxTimepoints > 0) {
             // Show the container
             container.style.display = 'block';
             
             // Update slider max value
-            timeSlider.max = fireRiskData.firerisks.length - 1;
+            timeSlider.max = maxTimepoints - 1;
             timeSlider.min = 0;
             timeSlider.value = 0;
             
             // Update the label
-            updateTimeLabel(fireRiskData, 0);
+            if (fireRiskData && fireRiskData.firerisks && fireRiskData.firerisks[0]) {
+                updateTimeLabel(fireRiskData, 0);
+            }
+            
+            // Remove any existing event listener to avoid duplicates
+            timeSlider.removeEventListener('input', handleTimeSliderChange);
             
             // Add event listener
-            timeSlider.addEventListener('input', function() {
-                const index = parseInt(this.value);
-                updateTimeLabel(fireRiskData, index);
-                
-                // Update the visualization
-                if (currentFireRiskPlot) {
-                    updateFireRiskPlot(currentFireRiskPlot, index);
-                }
-            });
+            timeSlider.addEventListener('input', handleTimeSliderChange);
+            
+            // Trigger the event handler to update the display
+            handleTimeSliderChange.call(timeSlider);
         } else {
             // Hide the container if no data
             container.style.display = 'none';
+        }
+    }
+
+    // Replace the handleTimeSliderChange function
+    function handleTimeSliderChange() {
+        const globalTimeIndex = parseInt(this.value);
+        
+        // Update all plots based on the selected time
+        Object.keys(fireRiskPlots).forEach(cityName => {
+            const plot = fireRiskPlots[cityName];
+            
+            // Find if this plot has data for this timestamp
+            if (plot && plot.data && plot.data.firerisks && plot.data.firerisks[globalTimeIndex]) {
+                // Show the plot and update it
+                if (plot.marker) {
+                    plot.marker.getElement().style.display = '';
+                    updateFireRiskPlot(plot, globalTimeIndex);
+                }
+            } else if (plot && plot.marker) {
+                // Hide the plot if no data for this timestamp
+                plot.marker.getElement().style.display = 'none';
+            }
+        });
+        
+        // Update the time label
+        if (currentActiveCity && fireRiskPlots[currentActiveCity] && 
+            fireRiskPlots[currentActiveCity].data && 
+            fireRiskPlots[currentActiveCity].data.firerisks) {
+            updateTimeLabel(fireRiskPlots[currentActiveCity].data, globalTimeIndex);
         }
     }
     
@@ -217,23 +259,64 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Fire risk data:', data);
         
         if (data && data.location && data.firerisks && data.firerisks.length > 0) {
-            // Clear any existing fire risk plots
-            if (currentFireRiskPlot) {
-                clearFireRiskPlot(map);
+            const cityName = searchedLocation.trim().toLowerCase();
+            
+            // Check if we already have a plot for this city
+            if (fireRiskPlots[cityName]) {
+                // Remove the existing plot for this city before adding updated one
+                clearSpecificFireRiskPlot(map, cityName);
             }
             
             // Center the map on the location
             map.setView([data.location.latitude, data.location.longitude], 13);
             
-            // Create fire risk visualization
-            currentFireRiskPlot = createFireRiskPlot(map, data);
-            
-            // Update the time slider
-            updateTimeSlider(data);
+            // Create fire risk visualization and store it
+            const newPlot = createFireRiskPlot(map, data);
+            if (newPlot) {
+                // Add city name as an identifier
+                newPlot.cityName = cityName;
+                fireRiskPlots[cityName] = newPlot;
+                
+                // Make this the active city
+                currentActiveCity = cityName;
+                
+                // Update the time slider for this city
+                updateTimeSlider(data);
+            }
         } else {
             displayError('No fire risk data available for this location');
         }
     }
+
+    function clearSpecificFireRiskPlot(map, cityName) {
+        if (fireRiskPlots[cityName]) {
+            // Remove the marker from the map
+            if (fireRiskPlots[cityName].marker) {
+                map.removeLayer(fireRiskPlots[cityName].marker);
+            }
+            // Delete the reference
+            delete fireRiskPlots[cityName];
+        }
+    }
+    
+    // Add this function after displayFireRiskData function
+    function setActiveCity(cityName) {
+        if (cityName && fireRiskPlots[cityName.toLowerCase()]) {
+            currentActiveCity = cityName.toLowerCase();
+            const plot = fireRiskPlots[currentActiveCity];
+            
+            // Update time slider with the data from this city
+            if (plot.hasTimeData) {
+                updateTimeSlider(plot.data);
+            } else {
+                // Hide time slider if no time data
+                timeControls.getContainer().style.display = 'none';
+            }
+        }
+    }
+
+    // Expose the function to the window object for access from fireriskplot.js
+    window.setActiveCity = setActiveCity;
     
     // Show loading indicator
     function showLoading() {

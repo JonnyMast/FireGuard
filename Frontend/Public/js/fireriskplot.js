@@ -24,12 +24,15 @@ const TTF_THRESHOLDS = {
  * @returns {Object} References to created map elements
  */
 export function createFireRiskPlot(map, data, timestampIndex = 0) {
-    // Clear any existing markers
-    clearFireRiskPlot(map);
-    
     if (!data || !data.location || !data.firerisks || !data.firerisks.length) {
         console.error('Invalid fire risk data format');
         return null;
+    }
+    
+    // Check if we have valid time-based information
+    const hasTimeData = data.firerisks.some(risk => risk.timestamp);
+    if (!hasTimeData) {
+        console.warn('No time information available for this location');
     }
     
     // Get the specific timestamp data
@@ -42,11 +45,10 @@ export function createFireRiskPlot(map, data, timestampIndex = 0) {
     // Create the main marker at the location
     const { latitude, longitude } = data.location;
     
-    // Determine color based on TTF (time to flashover)
+    // Determine color based on TTF
     const color = getTtfColor(timepoint.ttf);
     
     // Create circle marker with radius based on wind speed
-    // (higher wind speed = larger circle as it affects fire spread)
     const radius = calculateRadius(timepoint.wind_speed);
     
     // Create the circle marker
@@ -56,7 +58,8 @@ export function createFireRiskPlot(map, data, timestampIndex = 0) {
         color: '#000',
         weight: 1,
         opacity: 1,
-        fillOpacity: 0.7
+        fillOpacity: 0.7,
+        className: 'fire-risk-marker' // Add class for easy selection
     }).addTo(map);
     
     // Add popup with detailed information
@@ -73,11 +76,18 @@ export function createFireRiskPlot(map, data, timestampIndex = 0) {
     
     riskMarker.bindPopup(popupContent);
     
-    // Return references for later manipulation
+    // Make marker clickable to set as active city
+    riskMarker.on('click', function() {
+        if (window.setActiveCity) {
+            window.setActiveCity(data.location.name);
+        }
+    });
+    
     return {
         marker: riskMarker,
         data: data,
-        currentIndex: timestampIndex
+        currentIndex: timestampIndex,
+        hasTimeData: hasTimeData
     };
 }
 
@@ -114,7 +124,6 @@ export function updateFireRiskPlot(plot, newTimestampIndex) {
     const popupContent = `
         <div class="fire-risk-popup">
             <h3>Fire Risk Assessment</h3>
-            <p><strong>Location:</strong> ${plot.data.location.name || 'Unknown'}</p>
             <p><strong>Time:</strong> ${formattedTime}</p>
             <p><strong>Time to Flashover:</strong> ${timepoint.ttf.toFixed(2)} minutes</p>
             <p><strong>Wind Speed:</strong> ${timepoint.wind_speed.toFixed(2)} m/s</p>

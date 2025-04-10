@@ -1,6 +1,5 @@
 from App.Helpers import PredictionHelper as ph
 from App.Helpers.LocationHelper import location_helper
-from fastapi import HTTPException
 from frcm.frcapi import METFireRiskAPI
 from dotenv import load_dotenv
 MET_CLIENT_ID = load_dotenv('MET_CLIENT_ID')

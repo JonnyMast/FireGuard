@@ -1,11 +1,6 @@
-from App.Helpers.JwtUtils import CreateClientJwt, CreateUserJwt
-from App.Helpers.PasswordAuth import password_auth
 from App.Helpers import PredictionHelper as ph
 from App.Helpers.LocationHelper import location_helper
-from App.Services.SupabaseService import supabase_service
-from fastapi import HTTPException
 from frcm.frcapi import METFireRiskAPI
-import os
 from dotenv import load_dotenv
 MET_CLIENT_ID = load_dotenv('MET_CLIENT_ID')
 MET_CLIENT_SECRET = load_dotenv('MET_CLIENT_SECRET')

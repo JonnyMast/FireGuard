@@ -1,7 +1,6 @@
 from supabase import create_client, Client
 import os
 from dotenv import load_dotenv
-from App.Helpers.PasswordAuth import password_auth
 
 # create a class to interact with Supabase
 # it get the Supabase URL and the Supabase Key from the settings

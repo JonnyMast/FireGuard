@@ -17,3 +17,5 @@
    - The app will be available at:
      - **Backend (API)**: [http://127.0.0.1:8000](http://127.0.0.1:8000)
      - **Frontend (UI)**: [http://127.0.0.1:8080](http://127.0.0.1:8080)
+
+**Note:** Support for running on Windows via PowerShell will be added soon.

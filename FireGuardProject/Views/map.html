@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/FireGuardProject/Views/FireRiskMapStyle.css">
+</head>
+<body>
+    <div class="controls-wrapper">
+        <div id="daysControlContainer" class="control-item">
+            <input type="range" id="daysSlider" min="1" max="30" value="10" class="days-slider">
+            <span id="daysValue">10 days</span>
+            <button id="updateButton" class="update-button">Update Map</button>
+        </div>
+        <div class="control-item">
+            <div class="leaflet-control-zoom"></div>
+        </div>
+        <div id="logoutContainer" class="control-item">
+            <button id="logoutButton">Log Out</button>
+        </div>
+    </div>
+    <script src="/FireGuardProject/Views/jwt_header.js"></script>
+    <script src="/FireGuardProject/Views/Logout.js"></script>
+    <script src="/FireGuardProject/Views/MapControls.js"></script>
+</body>
+</html>

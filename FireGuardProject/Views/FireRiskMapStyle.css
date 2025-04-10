@@ -1,0 +1,127 @@
+.map-controls {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.left-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+
+.control-item {
+    background: white;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+}
+
+
+
+
+#logoutButton {
+    background-color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 12px;
+    border-radius: 4px;
+    margin-top: 20px;
+  
+}
+
+#logoutButton:hover {
+    background-color: #f4f4f4;
+}
+
+
+.controls-wrapper {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.control-item {
+    background: white;
+    padding: 8px;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    width: max-content;
+}
+
+#daysControlContainer {
+    position: relative; /* Change from relative to static */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    left: 0px !important;
+
+}
+
+
+.leaflet-control-locate {
+    position: absolute !important;
+    left: 75px !important;
+    top: 135px !important;  /* Adjust this value to position below other controls */
+}
+
+
+
+/* ...rest of your existing styles... */
+
+
+/* Ensure proper stacking */
+.leaflet-top {
+    z-index: 999;
+}
+
+
+/* ...existing code... */
+
+#daysControlContainer {
+    position: relative;
+    top: 20px;
+    left: 10px;
+    background: white;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.days-slider {
+    width: 150px;
+}
+
+#daysValue {
+    font-size: 14px;
+}
+
+.update-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.update-button:hover {
+    background-color: #45a049;
+}

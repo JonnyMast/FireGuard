@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const content = await response.text();
         document.open();
         document.write(content);
+
         document.close();
         console.log("[SUCCESS] Map loaded");
       } else {

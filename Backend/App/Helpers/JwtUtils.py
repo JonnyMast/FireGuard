@@ -15,11 +15,11 @@ USER_TOKEN_EXPIRY = 3600
 def CreateClientJwt(client_id: str, client_secret: str) -> str:
     """
     Create a JWT for an API client.
-    
+
     Args:
         client_id (str): The client's unique identifier
         client_secret (str): The client's secret (included in payload)
-    
+
     Returns:
         str: A signed JWT for the client
     """
@@ -28,7 +28,7 @@ def CreateClientJwt(client_id: str, client_secret: str) -> str:
         "client_secret": client_secret,  # Included for client validation
         "iat": int(time.time()),
         "exp": int(time.time()) + CLIENT_TOKEN_EXPIRY,
-        "type": "client"  # Optional: distinguish token type
+        "type": "client",  # Optional: distinguish token type
     }
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
@@ -37,10 +37,10 @@ def CreateClientJwt(client_id: str, client_secret: str) -> str:
 def CreateUserJwt(username: str) -> str:
     """
     Create a JWT for a user.
-    
+
     Args:
         username (str): The user's unique identifier
-    
+
     Returns:
         str: A signed JWT for the user
     """
@@ -48,7 +48,7 @@ def CreateUserJwt(username: str) -> str:
         "sub": username,
         "iat": int(time.time()),
         "exp": int(time.time()) + USER_TOKEN_EXPIRY,
-        "type": "user"  # Optional: distinguish token type
+        "type": "user",  # Optional: distinguish token type
     }
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
@@ -57,11 +57,11 @@ def CreateUserJwt(username: str) -> str:
 def VerifyJwt(token: str, supabase_service) -> bool:
     """
     Verify a JWT (client or user) and validate against the database.
-    
+
     Args:
         token (str): The JWT to verify
         supabase_service: Instance of SupabaseService
-    
+
     Returns:
         bool: True if valid, False otherwise
     """
@@ -73,12 +73,12 @@ def VerifyJwt(token: str, supabase_service) -> bool:
         if token_type == "client":
             client_secret = decoded.get("client_secret")
             return supabase_service.verify_client(sub, client_secret)
-        
+
         elif token_type == "user":
             return supabase_service.verify_user(sub)
-        
+
         else:
             return False
-        
+
     except (jwt.ExpiredSignatureError, jwt.InvalidTokenError):
         return False

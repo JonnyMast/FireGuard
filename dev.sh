@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Step 1: Copy .env.example to .env if it doesn't already exist
-if [ ! -f .env ]; then
-  echo "Creating .env from .env.example..."
-  cp .env.example .env
+# Step 1: Copy backend .env file if needed
+if [ ! -f backend/.env ]; then
+  echo "🔧 Creating backend/.env from root .env.example..."
+  cp .env.example backend/.env
 fi
 
-# Step 2: Build and start the Docker container
-echo "Starting FireGuard dev environment..."
+# Step 2: Start Docker containers
+echo "🚀 Starting FireGuard backend and frontend..."
 docker compose up --build

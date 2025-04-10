@@ -1,15 +1,25 @@
 version: "3.9"
 
 services:
-  fireguard:
-    build: .
-    container_name: fireguard-app
+  backend:
+    build:
+      context: ./backend
+    container_name: fireguard-backend
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ./backend/.env
+    command: poetry run python run.py
     ports:
       - "8000:8000"
+
+  frontend:
+    image: node:18
+    container_name: fireguard-frontend
+    working_dir: /app
     volumes:
-      - ./src:/app/src
-    env_file:
-      - .env
-    working_dir: /app/src
-    command: >
-      uvicorn fireguard2.main:app --host 0.0.0.0 --port 8000 --reload
+      - ./Frontend/public:/app
+    ports:
+      - "8080:8080"
+    command: npx live-server --port=8080 --host=0.0.0.0

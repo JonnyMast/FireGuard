@@ -44,7 +44,10 @@ header {
 .logo span {
     margin-right: 10px;
 }
-
+.btn-group {
+    display: flex;
+    gap: 1rem;
+}
 .btn {
     display: inline-block;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -67,6 +70,8 @@ header {
 .btn:active {
     transform: translateY(0);
 }
+
+
 
 .hero {
     min-height: 80vh;

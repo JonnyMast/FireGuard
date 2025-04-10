@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from App.API.Routes import Generate, FireRisk
+from App.API.Routes import Generate, FireRisk, Register  # Add Register import here
 
 app = FastAPI(title="FastAPI Supabase Example")
 
@@ -28,6 +28,7 @@ app.add_middleware(
 # This means that the routes will be available at 127.0.0.1/api/{route}
 app.include_router(Generate.router, prefix="/api")
 app.include_router(FireRisk.router, prefix="/api")
+app.include_router(Register.router)  # No prefix, will be at /register
 
 # Define a root path
 @app.get("/")

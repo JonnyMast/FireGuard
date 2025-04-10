@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FireGuard Register</title>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <h1>Create Account</h1>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+       
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <p class="form-footer">Already have an account? <a href="login.html">Login</a></p>
+    </div>
+
+    <script type="module" src="./js/registerUser.js"></script>
+    <script type="module" src="./js/passwordValidator.js"></script>
+
+</body>
+</html>

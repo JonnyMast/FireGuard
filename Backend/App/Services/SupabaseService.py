@@ -4,17 +4,17 @@ from dotenv import load_dotenv
 from App.Helpers.PasswordAuth import password_auth
 
 # create a class to interact with Supabase
-# it get the Supabase URL and the Supabase Anon Key from the settings
+# it get the Supabase URL and the Supabase Key from the settings
 class SupabaseService:
     
     def __init__(self):
         load_dotenv()
         SUPABASE_URL = os.getenv("SUPABASE_URL")
-        SUPABASE_ANON_KEY = os.getenv("SUPABASE_ANON_KEY")
+        SUPABASE_KEY = os.getenv("SUPABASE_KEY")
 
         self.supabase: Client = create_client(
             SUPABASE_URL,
-            SUPABASE_ANON_KEY
+            SUPABASE_KEY
         )
 
 

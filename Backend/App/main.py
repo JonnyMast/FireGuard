@@ -6,13 +6,13 @@ app = FastAPI(title="FastAPI Supabase Example")
 
 # Configure CORS
 origins = [
-    "http://localhost:8080",    # VS Code Live Server
-    "http://localhost:8000",    # Common React port
-    "http://127.0.0.1:8080",    # VS Code Live Server alternative URL
-    "http://127.0.0.1:8000",    # Your FastAPI server (for same-origin requests)
-    # Add your production domain when deploying
-    # "https://yourapp.com",
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://fireguard-gruppe-1-frontend.e9ach8h4hkbkekdm.westeurope.azurecontainer.io:8080",
 ]
+
 
 # Add CORS middleware
 app.add_middleware(

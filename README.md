@@ -10,6 +10,15 @@ You can access it here:
 - **Frontend (UI)**: [http://fireguard-gruppe-1-frontend.e9ach8h4hkbkekdm.westeurope.azurecontainer.io:8080](http://fireguard-gruppe-1-frontend.e9ach8h4hkbkekdm.westeurope.azurecontainer.io:8080)
 - **Backend (API)** (for testing/debugging): [http://fireguard-gruppe-1.gugcaegahxagggek.westeurope.azurecontainer.io:8000](http://fireguard-gruppe-1.gugcaegahxagggek.westeurope.azurecontainer.io:8000)
 
+## 🔐 Login Credentials
+
+To try out the app, use the following MVP & demo user:
+
+- **Username:** Andrea  
+- **Password:** Fosso
+
+Once logged in, you’ll be able to explore the full interface and functionality.
+
 ---
 
 ## 🛠️ Want to Run It Locally?

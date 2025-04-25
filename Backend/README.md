@@ -19,7 +19,7 @@
 ## Database info
 SUPABASE_URL=
 
-SUPABASE_ANON_KEY=
+SUPABASE_KEY=
 
 ## JWT master key
 JWT_SECRET=

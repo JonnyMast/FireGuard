@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map - FireGuard</title>
+    <link rel="stylesheet" href="./css/map.css">
+</head>
+<body>
+    <header>
+        <h1>FireGuard</h1>
+        <button id="logout-btn">Logout</button>
+    </header>
+
+    <main>
+        <div id="map-container">
+            <!-- Leaflet map will be loaded here -->
+        </div>
+
+        <div id="controls">
+            <div class="search-section">
+                <input type="text" id="location-search" placeholder="Search location...">
+                <button id="search-btn">Search</button>
+            </div>
+            
+            <div class="slider-section">
+                <label for="days-slider">Historical data: <span id="days-value">1</span> days</label>
+                <input type="range" id="days-slider" min="1" max="14" value="1">
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="./js/map.js"></script>
+    <script type="module" src="./js/logout.js"></script>
+</body>
+</html>
